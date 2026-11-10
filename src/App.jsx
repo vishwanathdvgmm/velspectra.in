@@ -4,7 +4,8 @@ import {
   ShoppingBag, Workflow, Gauge, Check, Globe2, Mail, ChevronDown,
   Compass, Layers, Zap, Cpu, Award, Star, Activity, Clock,
   MessageSquare, ShieldCheck, HeartHandshake, FileCode2,
-  CreditCard, Lock, FileText, Truck, RefreshCw, Shield, Phone
+  CreditCard, Lock, FileText, Truck, RefreshCw, Shield, Phone,
+  QrCode
 } from "lucide-react";
 
 import ParticleCanvas from "./components/ParticleCanvas";
@@ -15,6 +16,7 @@ import FloatingControls from "./components/SoundToggle";
 import ProjectModal from "./components/ProjectModal";
 import ProjectCalculator from "./components/ProjectCalculator";
 import PolicyModal from "./components/PolicyModal";
+import InvoicePortal from "./components/InvoicePortal";
 import Confetti from "./components/Confetti";
 import { sound } from "./utils/sound";
 
@@ -469,6 +471,8 @@ function App() {
 
   // Compliance modal state
   const [activePolicy, setActivePolicy] = useState(null);
+  // Digital Invoice & UPI Payment Portal state
+  const [showInvoicePortal, setShowInvoicePortal] = useState(false);
 
   // Clean URL Path routing & complete removal of '#' hashes
   useEffect(() => {
@@ -495,6 +499,8 @@ function App() {
         setActivePolicy("contact");
       } else if (path === "payment-process" || path === "how-to-pay") {
         setActivePolicy("payment");
+      } else if (path === "invoice" || path === "invoices" || path === "create-invoice" || path === "pay") {
+        setShowInvoicePortal(true);
       } else if (path) {
         // Section smooth scroll (/services, /pricing, /work, /process, /about, /contact)
         const targetElement = document.getElementById(path);
@@ -537,7 +543,7 @@ function App() {
   const getWhatsAppEnquiryUrl = () => {
     const origin = typeof window !== "undefined" ? window.location.origin : "https://velspectra.in";
     const text =
-      `*⚡ New Project Enquiry — VELSPECTRA*\n\n` +
+      `*New Project Enquiry — VELSPECTRA*\n\n` +
       `*Client Name:* ${formName || "Valued Client"}\n` +
       `*Email:* ${formEmail || "Not provided"}\n` +
       `*Phone:* ${formPhone || "Not provided"}\n` +
@@ -599,7 +605,7 @@ function App() {
     sound.playClick();
 
     const payload = {
-      _subject: `⚡ VELSPECTRA Lead: ${formName} (${formCategory})`,
+      _subject: `VELSPECTRA Lead: ${formName} (${formCategory})`,
       _replyto: formEmail,
       "Client Name": formName,
       "Client Email": formEmail,
@@ -688,6 +694,16 @@ function App() {
           policyType={activePolicy}
           onClose={() => {
             setActivePolicy(null);
+            window.history.replaceState(null, "", "/");
+          }}
+        />
+      )}
+
+      {/* Dynamic Digital Invoice & Direct Payment Portal */}
+      {showInvoicePortal && (
+        <InvoicePortal
+          onClose={() => {
+            setShowInvoicePortal(false);
             window.history.replaceState(null, "", "/");
           }}
         />
@@ -1032,17 +1048,31 @@ function App() {
                   <span><strong>20%</strong> Final Handover</span>
                 </div>
               </div>
-              <button
-                type="button"
-                className="payment-notice-btn"
-                onClick={() => {
-                  sound.playClick();
-                  setActivePolicy("payment");
-                  window.history.pushState(null, "", "/payment-process");
-                }}
-              >
-                Payment Workflow &rarr;
-              </button>
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center" }}>
+                <button
+                  type="button"
+                  className="payment-notice-btn"
+                  onClick={() => {
+                    sound.playClick();
+                    setShowInvoicePortal(true);
+                    window.history.pushState(null, "", "/invoice");
+                  }}
+                >
+                  <QrCode size={14} style={{ marginRight: 6, verticalAlign: "middle" }} /> View Invoice &amp; UPI QR
+                </button>
+                <button
+                  type="button"
+                  className="payment-notice-btn"
+                  style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.15)", color: "#fff" }}
+                  onClick={() => {
+                    sound.playClick();
+                    setActivePolicy("payment");
+                    window.history.pushState(null, "", "/payment-process");
+                  }}
+                >
+                  Payment Workflow &rarr;
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -1610,6 +1640,18 @@ function App() {
               >
                 Payment Workflow
               </button>
+              <button
+                type="button"
+                className="footer-policy-link"
+                style={{ color: "#7ad8e8", opacity: 0.9 }}
+                onClick={() => {
+                  sound.playClick();
+                  setShowInvoicePortal(true);
+                  window.history.pushState(null, "", "/invoice?mode=create");
+                }}
+              >
+                Founder Invoice Creator
+              </button>
             </div>
             <div>
               <span className="eyebrow">CLIENT & PAYMENTS</span>
@@ -1618,11 +1660,23 @@ function App() {
                 className="footer-pay-btn"
                 onClick={() => {
                   sound.playClick();
+                  setShowInvoicePortal(true);
+                  window.history.pushState(null, "", "/invoice");
+                }}
+              >
+                <QrCode size={14} /> View Invoice &amp; UPI QR
+              </button>
+              <button
+                type="button"
+                className="footer-policy-link"
+                style={{ textAlign: "left", padding: 0, marginBottom: 8 }}
+                onClick={() => {
+                  sound.playClick();
                   setActivePolicy("payment");
                   window.history.pushState(null, "", "/payment-process");
                 }}
               >
-                <FileText size={14} /> How Payment Works
+                <FileText size={13} style={{ display: "inline", verticalAlign: "middle", marginRight: 4 }} /> How Payment Works
               </button>
               <a href="mailto:vishwanathdvgmm@gmail.com">vishwanathdvgmm@gmail.com</a>
               <a href="tel:+918310490313" className="phone-footer-link">

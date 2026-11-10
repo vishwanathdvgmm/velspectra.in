@@ -25,7 +25,7 @@ export async function onRequestPost({ request, env }) {
 
     // Forward to FormSubmit API targeted directly at your inbox
     const emailPayload = {
-      _subject: `⚡ VELSPECTRA Lead: ${name} (${pkg || "Custom Project"})`,
+      _subject: `VELSPECTRA Lead: ${name} (${pkg || "Custom Project"})`,
       _replyto: email,
       "Client Name": name,
       "Client Email": email,
