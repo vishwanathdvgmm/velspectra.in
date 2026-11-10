@@ -426,34 +426,24 @@ export default function AdminPortal({ onClose }) {
                     />
                   </label>
                   <label>
+                    <span>Client Email Address</span>
+                    <input
+                      type="email"
+                      value={clientEmail}
+                      onChange={(e) => setClientEmail(e.target.value)}
+                      placeholder="client@company.com"
+                    />
+                  </label>
+                </div>
+
+                <div className="form-two-col">
+                  <label>
                     <span>Client WhatsApp / Phone</span>
                     <input
                       type="text"
                       value={clientPhone}
                       onChange={(e) => setClientPhone(e.target.value)}
                       placeholder="+91 98765 43210"
-                    />
-                  </label>
-                </div>
-
-                <label>
-                  <span>Project Scope &amp; Title</span>
-                  <input
-                    type="text"
-                    value={projectTitle}
-                    onChange={(e) => setProjectTitle(e.target.value)}
-                    placeholder="Custom Website Design & Development"
-                  />
-                </label>
-
-                <div className="form-two-col">
-                  <label>
-                    <span>Total Project Value ({currency})</span>
-                    <input
-                      type="number"
-                      value={totalAmount}
-                      onChange={(e) => setTotalAmount(Number(e.target.value))}
-                      step={500}
                     />
                   </label>
                   <label>
@@ -473,6 +463,27 @@ export default function AdminPortal({ onClose }) {
                       </option>
                       <option value="full">100% Full Settlement</option>
                     </select>
+                  </label>
+                </div>
+
+                <div className="form-two-col">
+                  <label>
+                    <span>Project Scope &amp; Title</span>
+                    <input
+                      type="text"
+                      value={projectTitle}
+                      onChange={(e) => setProjectTitle(e.target.value)}
+                      placeholder="Custom Website Design & Development"
+                    />
+                  </label>
+                  <label>
+                    <span>Total Project Value ({currency})</span>
+                    <input
+                      type="number"
+                      value={totalAmount}
+                      onChange={(e) => setTotalAmount(Number(e.target.value))}
+                      step={500}
+                    />
                   </label>
                 </div>
 
