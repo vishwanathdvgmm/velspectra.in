@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /founder
+Disallow: /console
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://velspectra.in/sitemap.xml
+
