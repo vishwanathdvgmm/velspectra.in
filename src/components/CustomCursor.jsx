@@ -9,7 +9,10 @@ export default function CustomCursor() {
 
   useEffect(() => {
     // Disable on touch devices
-    if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) {
+    if (
+      typeof window === "undefined" ||
+      window.matchMedia("(pointer: coarse)").matches
+    ) {
       return;
     }
 
@@ -59,7 +62,7 @@ export default function CustomCursor() {
 
     const handlePointerOver = (e) => {
       const target = e.target.closest(
-        "a, button, .project-card, .service-row, .process-step, .interactive-badge, .calculator-chip, [data-cursor]"
+        "a, button, .project-card, .service-row, .process-step, .interactive-badge, .calculator-chip, [data-cursor]",
       );
       if (target) {
         setIsHovered(true);
@@ -74,7 +77,9 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", onMouseMove, { passive: true });
     document.addEventListener("mouseenter", onMouseEnter);
     document.addEventListener("mouseleave", onMouseLeave);
-    document.addEventListener("mouseover", handlePointerOver, { passive: true });
+    document.addEventListener("mouseover", handlePointerOver, {
+      passive: true,
+    });
     rafId = requestAnimationFrame(render);
 
     return () => {

@@ -518,7 +518,6 @@ function App() {
   const [formEmail, setFormEmail] = useState("");
   const [formPhone, setFormPhone] = useState("");
   const [formMessage, setFormMessage] = useState("");
-  const [autoOpenWhatsApp, setAutoOpenWhatsApp] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailDelivered, setEmailDelivered] = useState(false);
 
@@ -534,17 +533,19 @@ function App() {
     }
   }, [currency]);
 
-  // Format pre-filled WhatsApp lead text
+  // Format pre-filled WhatsApp lead text with complete content and project link
   const getWhatsAppEnquiryUrl = () => {
+    const origin = typeof window !== "undefined" ? window.location.origin : "https://velspectra.in";
     const text =
       `*⚡ New Project Enquiry — VELSPECTRA*\n\n` +
-      `*Client:* ${formName || "Valued Client"}\n` +
+      `*Client Name:* ${formName || "Valued Client"}\n` +
       `*Email:* ${formEmail || "Not provided"}\n` +
       `*Phone:* ${formPhone || "Not provided"}\n` +
-      `*Package:* ${formCategory}\n` +
+      `*Selected Package:* ${formCategory}\n` +
       `*Target Budget:* ${currency} ${formBudget}\n\n` +
-      `*Requirements:*\n${formMessage || "I would like to discuss a website project."}\n\n` +
-      `— Dispatched from velspectra.in`;
+      `*Project Requirements & Details:*\n${formMessage || "I need a professional website developed."}\n\n` +
+      `*Project Reference Link:* ${origin}/services\n` +
+      `— Dispatched automatically via velspectra.in`;
     return `https://wa.me/918310490313?text=${encodeURIComponent(text)}`;
   };
 
@@ -652,12 +653,10 @@ function App() {
     sound.playSuccess();
     setSubmitted(true);
 
-    // 3. Option 3 Dual Routing: Automatically open formatted WhatsApp chat
-    if (autoOpenWhatsApp) {
-      setTimeout(() => {
-        window.open(getWhatsAppEnquiryUrl(), "_blank");
-      }, 500);
-    }
+    // 3. Automatic instant WhatsApp automation with full project content & link
+    setTimeout(() => {
+      window.open(getWhatsAppEnquiryUrl(), "_blank");
+    }, 400);
   };
 
   const filteredProjects =
@@ -1395,20 +1394,6 @@ function App() {
                       placeholder="e.g. We run a café in Bengaluru and need a mobile-friendly menu, location map, and WhatsApp table reservation button..."
                     />
                   </label>
-
-                  {/* Option 3: Dual Transmission Preference */}
-                  <div className="dual-delivery-toggle">
-                    <label className="checkbox-label">
-                      <input
-                        type="checkbox"
-                        checked={autoOpenWhatsApp}
-                        onChange={(e) => setAutoOpenWhatsApp(e.target.checked)}
-                      />
-                      <span>
-                        <strong>Dual Routing:</strong> Send to Gmail &amp; open copy on WhatsApp (+91 8310490313) for immediate reply
-                      </span>
-                    </label>
-                  </div>
 
                   <button
                     className={`button button-primary form-submit ${isSubmitting ? "is-loading" : ""}`}

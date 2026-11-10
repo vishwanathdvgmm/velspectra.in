@@ -3333,36 +3333,6 @@ h1 span,
   margin-bottom: 24px;
 }
 
-/* Dual Delivery Toggle in Contact Form */
-.dual-delivery-toggle {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
-  padding: 12px 14px;
-}
-
-.dual-delivery-toggle .checkbox-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  cursor: pointer;
-  font-size: 12px;
-  color: #c9c7d0;
-  line-height: 1.5;
-}
-
-.dual-delivery-toggle input[type="checkbox"] {
-  margin-top: 3px;
-  accent-color: #25d366;
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-}
-
-.dual-delivery-toggle strong {
-  color: #25d366;
-}
-
 /* Success State WhatsApp Bridge Card */
 .whatsapp-lead-bridge {
   background: rgba(37, 211, 102, 0.08);

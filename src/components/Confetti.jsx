@@ -12,7 +12,14 @@ export default function Confetti() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const colors = ["#ef3568", "#9d6bff", "#7ad8e8", "#ffd166", "#06d6a0", "#ffffff"];
+    const colors = [
+      "#ef3568",
+      "#9d6bff",
+      "#7ad8e8",
+      "#ffd166",
+      "#06d6a0",
+      "#ffffff",
+    ];
     const pieces = [];
     const count = 90;
 
@@ -80,4 +87,3 @@ export default function Confetti() {
     />
   );
 }
-

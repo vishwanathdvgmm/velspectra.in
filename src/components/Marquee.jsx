@@ -1,5 +1,12 @@
 import React from "react";
-import { Sparkles, Zap, Globe, Shield, Terminal, ArrowUpRight } from "lucide-react";
+import {
+  Sparkles,
+  Zap,
+  Globe,
+  Shield,
+  Terminal,
+  ArrowUpRight,
+} from "lucide-react";
 
 export default function Marquee() {
   const items1 = [
@@ -54,4 +61,3 @@ export default function Marquee() {
     </div>
   );
 }
-

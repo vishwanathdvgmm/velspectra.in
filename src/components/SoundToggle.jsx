@@ -32,7 +32,11 @@ export default function FloatingControls() {
   };
 
   return (
-    <div className="floating-dock" role="complementary" aria-label="Studio controls">
+    <div
+      className="floating-dock"
+      role="complementary"
+      aria-label="Studio controls"
+    >
       <button
         className={`floating-btn ${!muted ? "is-sound-on" : ""}`}
         onClick={toggleSound}
@@ -73,7 +77,13 @@ export default function FloatingControls() {
               cy="18"
             />
             <defs>
-              <linearGradient id="gradient-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient
+                id="gradient-accent"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
                 <stop offset="0%" stopColor="#ef3568" />
                 <stop offset="100%" stopColor="#7ad8e8" />
               </linearGradient>
@@ -85,4 +95,3 @@ export default function FloatingControls() {
     </div>
   );
 }
-

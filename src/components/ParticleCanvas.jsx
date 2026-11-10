@@ -159,11 +159,19 @@ export default function ParticleCanvas() {
       window.removeEventListener("resize", handleResize);
       if (canvas.parentElement) {
         canvas.parentElement.removeEventListener("mousemove", handleMouseMove);
-        canvas.parentElement.removeEventListener("mouseleave", handleMouseLeave);
+        canvas.parentElement.removeEventListener(
+          "mouseleave",
+          handleMouseLeave,
+        );
       }
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="hero-particle-canvas" aria-hidden="true" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="hero-particle-canvas"
+      aria-hidden="true"
+    />
+  );
 }
-

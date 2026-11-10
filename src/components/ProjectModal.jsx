@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
-import { X, ArrowUpRight, CheckCircle2, Cpu, Compass, Layers, Globe } from "lucide-react";
+import {
+  X,
+  ArrowUpRight,
+  CheckCircle2,
+  Cpu,
+  Compass,
+  Layers,
+  Globe,
+} from "lucide-react";
 import { sound } from "../utils/sound";
 
 export default function ProjectModal({ project, onClose }) {
@@ -52,7 +60,8 @@ export default function ProjectModal({ project, onClose }) {
               <span className="dot dot-yellow" />
               <span className="dot dot-green" />
               <span className="mockup-url">
-                https://{project.name.toLowerCase().replace(/[^a-z0-9]/g, "")}.velspectra.in
+                https://{project.name.toLowerCase().replace(/[^a-z0-9]/g, "")}
+                .velspectra.in
               </span>
             </div>
             <div className="mockup-screen">
@@ -60,7 +69,8 @@ export default function ProjectModal({ project, onClose }) {
                 <span className="mockup-kicker">{project.type}</span>
                 <h3>{project.label}</h3>
                 <p>
-                  Engineered with React 19, mobile-first responsiveness, WhatsApp direct booking, and sub-second loading speeds.
+                  Engineered with React 19, mobile-first responsiveness,
+                  WhatsApp direct booking, and sub-second loading speeds.
                 </p>
                 <div className="mockup-btn">Ready-to-Deploy Template ↗</div>
               </div>
@@ -70,25 +80,51 @@ export default function ProjectModal({ project, onClose }) {
 
         <div className="modal-body-grid">
           <div className="modal-section">
-            <h3><Compass size={16} /> Target Business Problem</h3>
+            <h3>
+              <Compass size={16} /> Target Business Problem
+            </h3>
             <p>{project.challenge}</p>
           </div>
 
           <div className="modal-section">
-            <h3><Cpu size={16} /> Included Features & Stack</h3>
+            <h3>
+              <Cpu size={16} /> Included Features & Stack
+            </h3>
             <div className="tech-pills">
-              {(project.tech || ["React 19", "Vite", "Tailwind CSS", "WhatsApp Direct", "Cloudflare Pages", "SEO Setup"]).map((t) => (
-                <span key={t} className="tech-pill">{t}</span>
+              {(
+                project.tech || [
+                  "React 19",
+                  "Vite",
+                  "Tailwind CSS",
+                  "WhatsApp Direct",
+                  "Cloudflare Pages",
+                  "SEO Setup",
+                ]
+              ).map((t) => (
+                <span key={t} className="tech-pill">
+                  {t}
+                </span>
               ))}
             </div>
           </div>
 
           <div className="modal-section modal-results">
-            <h3><CheckCircle2 size={16} /> Business Outcomes</h3>
+            <h3>
+              <CheckCircle2 size={16} /> Business Outcomes
+            </h3>
             <ul>
-              <li><strong>WhatsApp Lead Flow</strong> Direct customer enquiries straight to phone</li>
-              <li><strong>&lt; 0.8s Speed</strong> Instant loading on 4G/5G mobile devices</li>
-              <li><strong>100% Client Ownership</strong> Domain, hosting and source code handover</li>
+              <li>
+                <strong>WhatsApp Lead Flow</strong> Direct customer enquiries
+                straight to phone
+              </li>
+              <li>
+                <strong>&lt; 0.8s Speed</strong> Instant loading on 4G/5G mobile
+                devices
+              </li>
+              <li>
+                <strong>100% Client Ownership</strong> Domain, hosting and
+                source code handover
+              </li>
             </ul>
           </div>
         </div>

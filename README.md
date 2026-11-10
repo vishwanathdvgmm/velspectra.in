@@ -42,9 +42,7 @@ npm run preview
 ```text
 ├── 📁 functions
 │   └── 📁 api
-│       ├── 📄 cashfree-webhook.js
-│       ├── 📄 create-payment.js
-│       └── 📄 payment-status.js
+│       └── 📄 send-enquiry.js
 ├── 📁 public
 │   ├── 📄 _redirects
 │   ├── 🖼️ velspectra-logo.png
@@ -56,7 +54,6 @@ npm run preview
 │   │   ├── 📄 HeroVisual.jsx
 │   │   ├── 📄 Marquee.jsx
 │   │   ├── 📄 ParticleCanvas.jsx
-│   │   ├── 📄 PaymentModal.jsx
 │   │   ├── 📄 PolicyModal.jsx
 │   │   ├── 📄 ProjectCalculator.jsx
 │   │   ├── 📄 ProjectModal.jsx
