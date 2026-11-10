@@ -1,28 +1,59 @@
 import React, { useState, useEffect } from "react";
 import {
-  FileText, QrCode, Check, Copy, ExternalLink, Printer,
-  Share2, ArrowLeft, ArrowUpRight, MessageSquare, ShieldCheck,
-  Building, CreditCard, Sparkles, AlertCircle, RefreshCw, Send
+  FileText,
+  QrCode,
+  Check,
+  Copy,
+  ExternalLink,
+  Printer,
+  Share2,
+  ArrowLeft,
+  ArrowUpRight,
+  MessageSquare,
+  ShieldCheck,
+  Building,
+  CreditCard,
+  Sparkles,
+  AlertCircle,
+  RefreshCw,
+  Send,
 } from "lucide-react";
 import { sound } from "../utils/sound";
 
 export default function InvoicePortal({ onClose }) {
   // Read invoice parameters from URL query string if provided
   const queryParams = new URLSearchParams(
-    typeof window !== "undefined" ? window.location.search : ""
+    typeof window !== "undefined" ? window.location.search : "",
   );
 
   const initialInvoiceId = queryParams.get("id") || "VEL-2026-001";
   const initialClientName = queryParams.get("name") || "Client Business";
   const initialClientEmail = queryParams.get("email") || "client@company.com";
   const initialClientPhone = queryParams.get("phone") || "";
-  const initialProjectTitle = queryParams.get("project") || "Custom Website Design & Development";
+  const initialProjectTitle =
+    queryParams.get("project") || "Custom Website Design & Development";
   const initialTotalAmount = Number(queryParams.get("amount")) || 15000;
   const initialCurrency = queryParams.get("currency") || "INR";
   const initialMilestone = queryParams.get("milestone") || "advance";
 
+  const getSavedBankConfig = () => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("velspectra_bank_config");
+        if (saved) return JSON.parse(saved);
+      } catch (_) {}
+    }
+    return null;
+  };
+
+  const savedConfig = getSavedBankConfig();
+  const isAdmin =
+    typeof window !== "undefined" &&
+    (localStorage.getItem("velspectra_admin_auth") === "true" ||
+      queryParams.get("mode") === "admin");
+
   // State
-  const [activeTab, setActiveTab] = useState(queryParams.get("mode") === "create" ? "create" : "invoice");
+  const [activeTab, setActiveTab] = useState("invoice");
   const [invoiceId, setInvoiceId] = useState(initialInvoiceId);
   const [clientName, setClientName] = useState(initialClientName);
   const [clientEmail, setClientEmail] = useState(initialClientEmail);
@@ -32,29 +63,55 @@ export default function InvoicePortal({ onClose }) {
   const [currency, setCurrency] = useState(initialCurrency);
   const [selectedMilestone, setSelectedMilestone] = useState(initialMilestone);
   const [copied, setCopied] = useState("");
-  const [upiId, setUpiId] = useState("8310490313@ybl"); // Default Indian UPI ID
-  const [accountHolder, setAccountHolder] = useState("VISHWANATH MANJUNATH MADURI (VELSPECTRA)");
-  const [accountNumber, setAccountNumber] = useState("8310490313"); // Custom or phone linked
-  const [ifscCode, setIfscCode] = useState("SBIN0001234");
-  const [bankName, setBankName] = useState("State Bank of India");
+  const [upiId, setUpiId] = useState(
+    savedConfig?.upiId || "vishwanathdvgmm@slc",
+  );
+  const [accountHolder, setAccountHolder] = useState(
+    savedConfig?.accountHolder || "VISHWANATH M M (VELSPECTRA)",
+  );
+  const [accountNumber, setAccountNumber] = useState(
+    savedConfig?.accountNumber || "",
+  );
+  const [ifscCode, setIfscCode] = useState(savedConfig?.ifscCode || "");
+  const [bankName, setBankName] = useState(savedConfig?.bankName || "");
+  const [accountType, setAccountType] = useState(
+    savedConfig?.accountType || "Savings",
+  );
   const [utrNumber, setUtrNumber] = useState("");
   const [deliverables, setDeliverables] = useState([
     "Custom responsive UI/UX design (Mobile & Desktop)",
     "Clean React 19 frontend implementation",
     "WhatsApp lead enquiry routing & automated forms",
     "Domain setup, speed optimization & global CDN deployment",
-    "100% full source code and asset ownership handover"
+    "100% full source code and asset ownership handover",
   ]);
 
   // Milestone calculation
   const milestoneRates = {
-    advance: { label: "Project Advance", percent: 0.5, desc: "50% required before design & code commences" },
-    milestone: { label: "Development Milestone", percent: 0.3, desc: "30% due upon staging site review" },
-    final: { label: "Final Deployment & Handover", percent: 0.2, desc: "20% due before custom domain launch & code transfer" },
-    full: { label: "Full Project Settlement", percent: 1.0, desc: "100% full project payment" },
+    advance: {
+      label: "Project Advance",
+      percent: 0.5,
+      desc: "50% required before design & code commences",
+    },
+    milestone: {
+      label: "Development Milestone",
+      percent: 0.3,
+      desc: "30% due upon staging site review",
+    },
+    final: {
+      label: "Final Deployment & Handover",
+      percent: 0.2,
+      desc: "20% due before custom domain launch & code transfer",
+    },
+    full: {
+      label: "Full Project Settlement",
+      percent: 1.0,
+      desc: "100% full project payment",
+    },
   };
 
-  const currentRate = milestoneRates[selectedMilestone] || milestoneRates.advance;
+  const currentRate =
+    milestoneRates[selectedMilestone] || milestoneRates.advance;
   const dueAmount = Math.round(totalAmount * currentRate.percent);
 
   // Generate UPI payment deep link
@@ -65,7 +122,10 @@ export default function InvoicePortal({ onClose }) {
 
   // Generate shareable link
   const generateShareableUrl = () => {
-    const origin = typeof window !== "undefined" ? window.location.origin : "https://velspectra.in";
+    const origin =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "https://velspectra.in";
     const params = new URLSearchParams({
       id: invoiceId,
       name: clientName,
@@ -94,7 +154,7 @@ export default function InvoicePortal({ onClose }) {
   // WhatsApp Confirmation for Client
   const getClientPaymentConfirmUrl = () => {
     const msg =
-      `*⚡ Payment Completed — ${invoiceId}*\n\n` +
+      `*Payment Completed — ${invoiceId}*\n\n` +
       `*Client:* ${clientName}\n` +
       `*Project:* ${projectTitle}\n` +
       `*Milestone:* ${currentRate.label} (${currency === "INR" ? "₹" : "$"}${dueAmount.toLocaleString("en-IN")})\n` +
@@ -107,7 +167,7 @@ export default function InvoicePortal({ onClose }) {
   const getFounderWhatsAppQuoteUrl = () => {
     const shareUrl = generateShareableUrl();
     const msg =
-      `*⚡ Official Quotation & Invoice — VELSPECTRA*\n\n` +
+      `*Official Quotation & Invoice — VELSPECTRA*\n\n` +
       `Dear ${clientName},\n\n` +
       `Thank you for your enquiry. We have reviewed your requirements for *${projectTitle}*.\n\n` +
       `*Invoice Reference:* ${invoiceId}\n` +
@@ -142,28 +202,30 @@ export default function InvoicePortal({ onClose }) {
             <ArrowLeft size={16} /> Back to VELSPECTRA
           </button>
 
-          <div className="invoice-mode-tabs">
-            <button
-              type="button"
-              className={`mode-tab ${activeTab === "invoice" ? "is-active" : ""}`}
-              onClick={() => {
-                sound.playClick();
-                setActiveTab("invoice");
-              }}
-            >
-              <FileText size={14} /> Official Invoice
-            </button>
-            <button
-              type="button"
-              className={`mode-tab ${activeTab === "create" ? "is-active" : ""}`}
-              onClick={() => {
-                sound.playClick();
-                setActiveTab("create");
-              }}
-            >
-              <Sparkles size={14} /> Founder Invoice Generator
-            </button>
-          </div>
+          {isAdmin && (
+            <div className="invoice-mode-tabs">
+              <button
+                type="button"
+                className={`mode-tab ${activeTab === "invoice" ? "is-active" : ""}`}
+                onClick={() => {
+                  sound.playClick();
+                  setActiveTab("invoice");
+                }}
+              >
+                <FileText size={14} /> Official Invoice
+              </button>
+              <button
+                type="button"
+                className={`mode-tab ${activeTab === "create" ? "is-active" : ""}`}
+                onClick={() => {
+                  sound.playClick();
+                  setActiveTab("create");
+                }}
+              >
+                <Sparkles size={14} /> Founder Invoice Generator
+              </button>
+            </div>
+          )}
 
           <div className="invoice-action-pills">
             <button
@@ -179,7 +241,11 @@ export default function InvoicePortal({ onClose }) {
               className="action-pill"
               onClick={() => handleCopy(generateShareableUrl(), "url")}
             >
-              {copied === "url" ? <Check size={15} color="#34d399" /> : <Share2 size={15} />}
+              {copied === "url" ? (
+                <Check size={15} color="#34d399" />
+              ) : (
+                <Share2 size={15} />
+              )}
               <span>{copied === "url" ? "Copied!" : "Share Link"}</span>
             </button>
           </div>
@@ -194,7 +260,9 @@ export default function InvoicePortal({ onClose }) {
               <span className="eyebrow">FOUNDER BILLING ENGINE</span>
               <h2>Generate Client Invoice &amp; Payment Link</h2>
               <p>
-                Create a formal quotation invoice for any client enquiry in 30 seconds. Generates a live digital payment page with instant UPI QR &amp; bank transfer instructions.
+                Create a formal quotation invoice for any client enquiry in 30
+                seconds. Generates a live digital payment page with instant UPI
+                QR &amp; bank transfer instructions.
               </p>
             </div>
 
@@ -271,7 +339,9 @@ export default function InvoicePortal({ onClose }) {
                   value={selectedMilestone}
                   onChange={(e) => setSelectedMilestone(e.target.value)}
                 >
-                  <option value="advance">50% Advance (Before Work Begins)</option>
+                  <option value="advance">
+                    50% Advance (Before Work Begins)
+                  </option>
                   <option value="milestone">30% Development Milestone</option>
                   <option value="final">20% Final Launch &amp; Handover</option>
                   <option value="full">100% Full Payment</option>
@@ -303,7 +373,7 @@ export default function InvoicePortal({ onClose }) {
 
             <div className="gen-output-box">
               <div className="gen-output-title">
-                <strong>⚡ Instant Shareable Client Link:</strong>
+                <strong>Instant Shareable Client Link:</strong>
                 <a
                   href={generateShareableUrl()}
                   target="_blank"
@@ -361,14 +431,22 @@ export default function InvoicePortal({ onClose }) {
                   <span>VELSPECTRA</span>
                 </div>
                 <p className="invoice-agency-desc">
-                  Independent Digital Solutions Studio<br />
-                  Website Design · Development · Digital Integrations<br />
+                  Independent Digital Solutions Studio
+                  <br />
+                  Website Design · Development · Digital Integrations
+                  <br />
                   Operating from India · Serving Worldwide
                 </p>
                 <div className="invoice-contact-meta">
-                  <span><strong>Email:</strong> vishwanathdvgmm@gmail.com</span>
-                  <span><strong>Phone / WhatsApp:</strong> +91 8310490313</span>
-                  <span><strong>Website:</strong> velspectra.in</span>
+                  <span>
+                    <strong>Email:</strong> vishwanathdvgmm@gmail.com
+                  </span>
+                  <span>
+                    <strong>Phone / WhatsApp:</strong> +91 8310490313
+                  </span>
+                  <span>
+                    <strong>Website:</strong> velspectra.in
+                  </span>
                 </div>
               </div>
 
@@ -380,7 +458,13 @@ export default function InvoicePortal({ onClose }) {
                 <div className="invoice-date-rows">
                   <div>
                     <span className="label">Issue Date:</span>
-                    <span className="val">{new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</span>
+                    <span className="val">
+                      {new Date().toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </span>
                   </div>
                   <div>
                     <span className="label">Payment Terms:</span>
@@ -401,18 +485,24 @@ export default function InvoicePortal({ onClose }) {
                 <h3 className="client-display-name">{clientName}</h3>
                 <p>{clientEmail}</p>
                 {clientPhone && <p>{clientPhone}</p>}
-                <span className="billing-flag">Commercial Project Engagement</span>
+                <span className="billing-flag">
+                  Commercial Project Engagement
+                </span>
               </div>
 
               <div className="bill-project-col">
                 <span className="section-eyebrow">PROJECT ENGAGEMENT</span>
                 <h3 className="project-display-title">{projectTitle}</h3>
                 <p className="project-desc">
-                  Full lifecycle custom digital development, 60fps high-performance interface, mobile responsiveness, and production handover.
+                  Full lifecycle custom digital development, 60fps
+                  high-performance interface, mobile responsiveness, and
+                  production handover.
                 </p>
                 <div className="tax-exemption-tag">
                   <ShieldCheck size={13} color="#34d399" />
-                  <span>Sole Proprietorship · GST Threshold Exempt (Model.md §5)</span>
+                  <span>
+                    Sole Proprietorship · GST Threshold Exempt (Model.md §5)
+                  </span>
                 </div>
               </div>
             </div>
@@ -440,7 +530,10 @@ export default function InvoicePortal({ onClose }) {
                       </ul>
                     </td>
                     <td>1 – 2 Weeks</td>
-                    <td className="tar bold">{currency === "INR" ? "₹" : "$"}{totalAmount.toLocaleString("en-IN")}</td>
+                    <td className="tar bold">
+                      {currency === "INR" ? "₹" : "$"}
+                      {totalAmount.toLocaleString("en-IN")}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -449,7 +542,9 @@ export default function InvoicePortal({ onClose }) {
             {/* Financial Summary & Milestone Breakdown */}
             <div className="invoice-totals-grid">
               <div className="milestone-schedule-col">
-                <span className="section-eyebrow">AGREED MILESTONE SCHEDULE</span>
+                <span className="section-eyebrow">
+                  AGREED MILESTONE SCHEDULE
+                </span>
                 <div className="milestone-options-pills no-print">
                   {Object.entries(milestoneRates).map(([key, val]) => (
                     <button
@@ -462,20 +557,32 @@ export default function InvoicePortal({ onClose }) {
                       }}
                     >
                       <span className="pill-title">{val.label}</span>
-                      <span className="pill-pct">{Math.round(val.percent * 100)}% ({currency === "INR" ? "₹" : "$"}{Math.round(totalAmount * val.percent).toLocaleString("en-IN")})</span>
+                      <span className="pill-pct">
+                        {Math.round(val.percent * 100)}% (
+                        {currency === "INR" ? "₹" : "$"}
+                        {Math.round(totalAmount * val.percent).toLocaleString(
+                          "en-IN",
+                        )}
+                        )
+                      </span>
                     </button>
                   ))}
                 </div>
 
                 <p className="milestone-explainer">
-                  <strong>Currently Selected for Payment:</strong> {currentRate.label} ({Math.round(currentRate.percent * 100)}%). {currentRate.desc}.
+                  <strong>Currently Selected for Payment:</strong>{" "}
+                  {currentRate.label} ({Math.round(currentRate.percent * 100)}
+                  %). {currentRate.desc}.
                 </p>
               </div>
 
               <div className="invoice-summary-card">
                 <div className="summary-line">
                   <span>Total Project Investment:</span>
-                  <span>{currency === "INR" ? "₹" : "$"}{totalAmount.toLocaleString("en-IN")}</span>
+                  <span>
+                    {currency === "INR" ? "₹" : "$"}
+                    {totalAmount.toLocaleString("en-IN")}
+                  </span>
                 </div>
                 <div className="summary-line">
                   <span>Selected Milestone Share:</span>
@@ -488,7 +595,8 @@ export default function InvoicePortal({ onClose }) {
                 <div className="summary-line total-line">
                   <span>AMOUNT DUE NOW:</span>
                   <span className="due-highlight">
-                    {currency === "INR" ? "₹" : "$"}{dueAmount.toLocaleString("en-IN")}
+                    {currency === "INR" ? "₹" : "$"}
+                    {dueAmount.toLocaleString("en-IN")}
                   </span>
                 </div>
               </div>
@@ -502,7 +610,8 @@ export default function InvoicePortal({ onClose }) {
                 </div>
                 <h3>Choose your preferred payment method</h3>
                 <p>
-                  Work commences once the advance amount is credited and verified. Share your UTR / transaction ID after payment.
+                  Work commences once the advance amount is credited and
+                  verified. Share your UTR / transaction ID after payment.
                 </p>
               </div>
 
@@ -516,14 +625,22 @@ export default function InvoicePortal({ onClose }) {
 
                   <div className="upi-qr-flex">
                     <div className="qr-wrapper">
-                      <img src={qrCodeUrl} alt="UPI QR Code" className="upi-qr-img" />
-                      <span className="qr-scan-label">Scan with any UPI App</span>
+                      <img
+                        src={qrCodeUrl}
+                        alt="UPI QR Code"
+                        className="upi-qr-img"
+                      />
+                      <span className="qr-scan-label">
+                        Scan with any UPI App
+                      </span>
                     </div>
 
                     <div className="upi-details-col">
                       <div className="detail-item">
                         <span className="detail-label">Exact Amount:</span>
-                        <strong className="detail-val-highlight">₹{dueAmount.toLocaleString("en-IN")}</strong>
+                        <strong className="detail-val-highlight">
+                          ₹{dueAmount.toLocaleString("en-IN")}
+                        </strong>
                       </div>
                       <div className="detail-item">
                         <span className="detail-label">UPI ID / VPA:</span>
@@ -539,8 +656,12 @@ export default function InvoicePortal({ onClose }) {
                         </div>
                       </div>
                       <div className="detail-item">
-                        <span className="detail-label">Payment Note / Reference:</span>
-                        <code>{invoiceId}-{selectedMilestone.toUpperCase()}</code>
+                        <span className="detail-label">
+                          Payment Note / Reference:
+                        </span>
+                        <code>
+                          {invoiceId}-{selectedMilestone.toUpperCase()}
+                        </code>
                       </div>
 
                       {/* Mobile Deep Link */}
@@ -563,55 +684,96 @@ export default function InvoicePortal({ onClose }) {
                   </div>
 
                   <div className="bank-details-list">
-                    <div className="bank-row">
-                      <span className="b-lbl">Account Beneficiary:</span>
-                      <strong className="b-val">{accountHolder}</strong>
-                    </div>
-                    <div className="bank-row">
-                      <span className="b-lbl">Bank Name:</span>
-                      <span className="b-val">{bankName}</span>
-                    </div>
-                    <div className="bank-row">
-                      <span className="b-lbl">Account Number:</span>
-                      <div className="copy-field">
-                        <code>{accountNumber}</code>
-                        <button
-                          type="button"
-                          className="copy-btn"
-                          onClick={() => handleCopy(accountNumber, "acc")}
+                    {accountNumber ? (
+                      <>
+                        <div className="bank-row">
+                          <span className="b-lbl">Account Beneficiary:</span>
+                          <strong className="b-val">{accountHolder}</strong>
+                        </div>
+                        {bankName && (
+                          <div className="bank-row">
+                            <span className="b-lbl">Bank Name:</span>
+                            <span className="b-val">{bankName}</span>
+                          </div>
+                        )}
+                        <div className="bank-row">
+                          <span className="b-lbl">Account Number:</span>
+                          <div className="copy-field">
+                            <code>{accountNumber}</code>
+                            <button
+                              type="button"
+                              className="copy-btn"
+                              onClick={() => handleCopy(accountNumber, "acc")}
+                            >
+                              {copied === "acc" ? "Copied!" : "Copy"}
+                            </button>
+                          </div>
+                        </div>
+                        {ifscCode && (
+                          <div className="bank-row">
+                            <span className="b-lbl">IFSC Code:</span>
+                            <div className="copy-field">
+                              <code>{ifscCode}</code>
+                              <button
+                                type="button"
+                                className="copy-btn"
+                                onClick={() => handleCopy(ifscCode, "ifsc")}
+                              >
+                                {copied === "ifsc" ? "Copied!" : "Copy"}
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                        <div className="bank-row">
+                          <span className="b-lbl">Account Type:</span>
+                          <span className="b-val">{accountType}</span>
+                        </div>
+                        <div className="bank-row">
+                          <span className="b-lbl">Transfer Remark:</span>
+                          <code>{invoiceId}</code>
+                        </div>
+                      </>
+                    ) : (
+                      <div
+                        className="bank-notice-empty"
+                        style={{
+                          padding: "16px 0",
+                          fontSize: 13,
+                          color: "#d1cedb",
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        <p>
+                          Domestic NEFT/IMPS bank transfer details are verified
+                          against active project agreements.
+                        </p>
+                        <p
+                          style={{
+                            marginTop: 8,
+                            color: "#8c8998",
+                            fontSize: 12,
+                          }}
                         >
-                          {copied === "acc" ? "Copied!" : "Copy"}
-                        </button>
+                          Scan the dynamic UPI QR code above for instant
+                          payment, or contact Vishwanath on WhatsApp (
+                          <strong>+91 8310490313</strong>) for direct corporate
+                          wire instructions.
+                        </p>
                       </div>
-                    </div>
-                    <div className="bank-row">
-                      <span className="b-lbl">IFSC Code:</span>
-                      <div className="copy-field">
-                        <code>{ifscCode}</code>
-                        <button
-                          type="button"
-                          className="copy-btn"
-                          onClick={() => handleCopy(ifscCode, "ifsc")}
-                        >
-                          {copied === "ifsc" ? "Copied!" : "Copy"}
-                        </button>
-                      </div>
-                    </div>
-                    <div className="bank-row">
-                      <span className="b-lbl">Account Type:</span>
-                      <span className="b-val">Savings / Sole Proprietorship</span>
-                    </div>
-                    <div className="bank-row">
-                      <span className="b-lbl">Transfer Remark:</span>
-                      <code>{invoiceId}</code>
-                    </div>
+                    )}
                   </div>
 
                   {currency === "USD" && (
                     <div className="swift-international-note">
-                      <span className="intl-tag">INTERNATIONAL SWIFT WIRE (USD)</span>
+                      <span className="intl-tag">
+                        INTERNATIONAL SWIFT WIRE (USD)
+                      </span>
                       <p>
-                        For overseas inward remittances, use Purpose Code: <strong>P0802 (Software &amp; Website Development Services)</strong>. Contact us on WhatsApp for SWIFT/BIC routing.
+                        For overseas inward remittances, use Purpose Code:{" "}
+                        <strong>
+                          P0802 (Software &amp; Website Development Services)
+                        </strong>
+                        . Contact us on WhatsApp for SWIFT/BIC routing.
                       </p>
                     </div>
                   )}
@@ -626,7 +788,9 @@ export default function InvoicePortal({ onClose }) {
                 <div className="confirm-content">
                   <h4>Already transferred the funds?</h4>
                   <p>
-                    Enter your UTR number or bank reference below and notify Vishwanath on WhatsApp to confirm receipt and begin work immediately:
+                    Enter your UTR number or bank reference below and notify
+                    Vishwanath on WhatsApp to confirm receipt and begin work
+                    immediately:
                   </p>
                   <div className="utr-input-row">
                     <input
@@ -643,7 +807,8 @@ export default function InvoicePortal({ onClose }) {
                       className="utr-notify-btn"
                       onClick={() => sound.playClick()}
                     >
-                      Notify on WhatsApp (+91 8310490313) <ArrowUpRight size={15} />
+                      Notify on WhatsApp (+91 8310490313){" "}
+                      <ArrowUpRight size={15} />
                     </a>
                   </div>
                 </div>
@@ -652,15 +817,34 @@ export default function InvoicePortal({ onClose }) {
 
             {/* Terms & Verification Notice */}
             <div className="invoice-footer-terms">
-              <h4>Terms &amp; Independent Verification Notice (Payment_Model.md §8)</h4>
+              <h4>
+                Terms &amp; Independent Verification Notice (Payment_Model.md
+                §8)
+              </h4>
               <ol>
-                <li><strong>Verification Requirement:</strong> Project commencement begins only after funds have cleared and been independently confirmed in the receiving bank account. Transaction screenshots alone do not constitute settlement.</li>
-                <li><strong>Client Code Ownership:</strong> Upon settlement of the final milestone, 100% full source code, custom design assets, and credentials are unconditionally handed over to the client.</li>
-                <li><strong>Cancellation &amp; Refunds:</strong> Advance payments cover upfront developer scheduling and Figma wireframing. Please refer to our official Refund Policy at <code>velspectra.in/refund</code>.</li>
+                <li>
+                  <strong>Verification Requirement:</strong> Project
+                  commencement begins only after funds have cleared and been
+                  independently confirmed in the receiving bank account.
+                  Transaction screenshots alone do not constitute settlement.
+                </li>
+                <li>
+                  <strong>Client Code Ownership:</strong> Upon settlement of the
+                  final milestone, 100% full source code, custom design assets,
+                  and credentials are unconditionally handed over to the client.
+                </li>
+                <li>
+                  <strong>Cancellation &amp; Refunds:</strong> Advance payments
+                  cover upfront developer scheduling and Figma wireframing.
+                  Please refer to our official Refund Policy at{" "}
+                  <code>velspectra.in/refund</code>.
+                </li>
               </ol>
               <div className="invoice-bottom-sign">
                 <div>
-                  <strong>VELSPECTRA</strong> · Legal Proprietor: VISHWANATH MANJUNATH MADURI<br />
+                  <strong>VELSPECTRA</strong> · Legal Proprietor: VISHWANATH
+                  MANJUNATH MADURI
+                  <br />
                   Digital Agency Operations · Karnataka, India
                 </div>
                 <div className="invoice-seal">
@@ -674,4 +858,3 @@ export default function InvoicePortal({ onClose }) {
     </div>
   );
 }
-

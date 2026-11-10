@@ -17,6 +17,7 @@ import ProjectModal from "./components/ProjectModal";
 import ProjectCalculator from "./components/ProjectCalculator";
 import PolicyModal from "./components/PolicyModal";
 import InvoicePortal from "./components/InvoicePortal";
+import AdminPortal from "./components/AdminPortal";
 import Confetti from "./components/Confetti";
 import { sound } from "./utils/sound";
 
@@ -473,6 +474,8 @@ function App() {
   const [activePolicy, setActivePolicy] = useState(null);
   // Digital Invoice & UPI Payment Portal state
   const [showInvoicePortal, setShowInvoicePortal] = useState(false);
+  // Founder Admin Console state
+  const [showAdminPortal, setShowAdminPortal] = useState(false);
 
   // Clean URL Path routing & complete removal of '#' hashes
   useEffect(() => {
@@ -487,7 +490,9 @@ function App() {
       // 2. Parse clean pathname without leading/trailing slashes
       const path = window.location.pathname.replace(/^\/|\/$/g, "").toLowerCase();
 
-      if (path === "terms") {
+      if (path === "admin" || path === "founder" || path === "console" || path === "admin-portal") {
+        setShowAdminPortal(true);
+      } else if (path === "terms") {
         setActivePolicy("terms");
       } else if (path === "privacy") {
         setActivePolicy("privacy");
@@ -499,8 +504,10 @@ function App() {
         setActivePolicy("contact");
       } else if (path === "payment-process" || path === "how-to-pay") {
         setActivePolicy("payment");
-      } else if (path === "invoice" || path === "invoices" || path === "create-invoice" || path === "pay") {
+      } else if (path === "invoice" || path === "invoices" || path === "pay") {
         setShowInvoicePortal(true);
+      } else if (path === "create-invoice") {
+        setShowAdminPortal(true);
       } else if (path) {
         // Section smooth scroll (/services, /pricing, /work, /process, /about, /contact)
         const targetElement = document.getElementById(path);
@@ -704,6 +711,16 @@ function App() {
         <InvoicePortal
           onClose={() => {
             setShowInvoicePortal(false);
+            window.history.replaceState(null, "", "/");
+          }}
+        />
+      )}
+
+      {/* Founder Admin Console (Restricted & Passcode Protected) */}
+      {showAdminPortal && (
+        <AdminPortal
+          onClose={() => {
+            setShowAdminPortal(false);
             window.history.replaceState(null, "", "/");
           }}
         />
@@ -1666,18 +1683,6 @@ function App() {
                 }}
               >
                 Payment Workflow
-              </button>
-              <button
-                type="button"
-                className="footer-policy-link"
-                style={{ color: "#7ad8e8", opacity: 0.9 }}
-                onClick={() => {
-                  sound.playClick();
-                  setShowInvoicePortal(true);
-                  window.history.pushState(null, "", "/invoice?mode=create");
-                }}
-              >
-                Founder Invoice Creator
               </button>
             </div>
             <div>
