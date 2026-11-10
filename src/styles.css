@@ -3333,6 +3333,102 @@ h1 span,
   margin-bottom: 24px;
 }
 
+/* Dual Delivery Toggle in Contact Form */
+.dual-delivery-toggle {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+
+.dual-delivery-toggle .checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #c9c7d0;
+  line-height: 1.5;
+}
+
+.dual-delivery-toggle input[type="checkbox"] {
+  margin-top: 3px;
+  accent-color: #25d366;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.dual-delivery-toggle strong {
+  color: #25d366;
+}
+
+/* Success State WhatsApp Bridge Card */
+.whatsapp-lead-bridge {
+  background: rgba(37, 211, 102, 0.08);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.whatsapp-lead-bridge .bridge-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(37, 211, 102, 0.15);
+  display: grid;
+  place-items: center;
+}
+
+.whatsapp-lead-bridge .bridge-text strong {
+  display: block;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.whatsapp-lead-bridge .bridge-text p {
+  font-size: 12px;
+  color: #a4a1af;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.whatsapp-bridge-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25d366;
+  color: #05060a !important;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 12px 18px;
+  border-radius: 6px;
+  text-align: center;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+}
+
+.whatsapp-bridge-btn:hover {
+  background: #2ee672;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.form-submit.is-loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
 /* ==========================================================================
    FOOTER
    ========================================================================== */

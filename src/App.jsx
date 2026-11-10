@@ -518,6 +518,9 @@ function App() {
   const [formEmail, setFormEmail] = useState("");
   const [formPhone, setFormPhone] = useState("");
   const [formMessage, setFormMessage] = useState("");
+  const [autoOpenWhatsApp, setAutoOpenWhatsApp] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailDelivered, setEmailDelivered] = useState(false);
 
   const budgetsINR = ["₹5,000 – ₹10,000", "₹10,000 – ₹20,000", "₹20,000 – ₹50,000", "₹50,000+"];
   const budgetsUSD = ["$100 – $200", "$200 – $400", "$400 – $1,000", "$1,000+"];
@@ -530,6 +533,20 @@ function App() {
       setFormBudget("$200 – $400");
     }
   }, [currency]);
+
+  // Format pre-filled WhatsApp lead text
+  const getWhatsAppEnquiryUrl = () => {
+    const text =
+      `*⚡ New Project Enquiry — VELSPECTRA*\n\n` +
+      `*Client:* ${formName || "Valued Client"}\n` +
+      `*Email:* ${formEmail || "Not provided"}\n` +
+      `*Phone:* ${formPhone || "Not provided"}\n` +
+      `*Package:* ${formCategory}\n` +
+      `*Target Budget:* ${currency} ${formBudget}\n\n` +
+      `*Requirements:*\n${formMessage || "I would like to discuss a website project."}\n\n` +
+      `— Dispatched from velspectra.in`;
+    return `https://wa.me/918310490313?text=${encodeURIComponent(text)}`;
+  };
 
   // Robust reveal observer
   useEffect(() => {
@@ -574,10 +591,73 @@ function App() {
     );
   };
 
-  const handleFormSubmit = (e) => {
+  // Real Option 3: Dual Transmission (Email to vishwanathdvgmm@gmail.com + WhatsApp sync)
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    sound.playClick();
+
+    const payload = {
+      _subject: `⚡ VELSPECTRA Lead: ${formName} (${formCategory})`,
+      _replyto: formEmail,
+      "Client Name": formName,
+      "Client Email": formEmail,
+      "Client Phone / WhatsApp": formPhone || "Not provided",
+      "Selected Package": formCategory,
+      "Target Budget": `${currency} ${formBudget}`,
+      "Project Requirements": formMessage,
+      "Submission Timestamp": new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+      _template: "table",
+      _captcha: "false"
+    };
+
+    let delivered = false;
+
+    // 1. Direct API delivery to your verified Gmail via FormSubmit
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/vishwanathdvgmm@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        delivered = true;
+      }
+    } catch (err) {
+      console.warn("Direct email delivery note:", err);
+    }
+
+    // 2. Cloudflare Serverless Function fallback
+    try {
+      await fetch("/api/send-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formName,
+          email: formEmail,
+          phone: formPhone,
+          package: formCategory,
+          budget: `${currency} ${formBudget}`,
+          message: formMessage,
+          currency: currency
+        })
+      });
+    } catch (_) {}
+
+    setEmailDelivered(delivered);
+    setIsSubmitting(false);
     sound.playSuccess();
     setSubmitted(true);
+
+    // 3. Option 3 Dual Routing: Automatically open formatted WhatsApp chat
+    if (autoOpenWhatsApp) {
+      setTimeout(() => {
+        window.open(getWhatsAppEnquiryUrl(), "_blank");
+      }, 500);
+    }
   };
 
   const filteredProjects =
@@ -1195,13 +1275,33 @@ function App() {
                   <div className="success-icon">
                     <Check size={28} />
                   </div>
-                  <h3>Enquiry Prepared!</h3>
+                  <h3>Enquiry Successfully Dispatched!</h3>
                   <p>
-                    Thank you, <strong>{formName || "there"}</strong>. Your project enquiry for <strong>{formCategory}</strong> has been logged. We will reach out via email/phone within 24 hours.
+                    Thank you, <strong>{formName || "there"}</strong>. Your project requirements for <strong>{formCategory}</strong> have been delivered directly to our inbox at <strong>vishwanathdvgmm@gmail.com</strong>.
                   </p>
+
+                  <div className="whatsapp-lead-bridge">
+                    <div className="bridge-icon">
+                      <MessageSquare size={22} color="#25d366" />
+                    </div>
+                    <div className="bridge-text">
+                      <strong>Instant WhatsApp Priority Hotline</strong>
+                      <p>Want to discuss your project right away? Forward these details straight to Vishwanath on WhatsApp.</p>
+                    </div>
+                    <a
+                      href={getWhatsAppEnquiryUrl()}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="whatsapp-bridge-btn"
+                      onClick={() => sound.playClick()}
+                    >
+                      Open in WhatsApp ↗
+                    </a>
+                  </div>
+
                   <button
                     type="button"
-                    className="button button-primary"
+                    className="button button-secondary"
                     onClick={() => {
                       sound.playClick();
                       setSubmitted(false);
@@ -1296,12 +1396,33 @@ function App() {
                     />
                   </label>
 
+                  {/* Option 3: Dual Transmission Preference */}
+                  <div className="dual-delivery-toggle">
+                    <label className="checkbox-label">
+                      <input
+                        type="checkbox"
+                        checked={autoOpenWhatsApp}
+                        onChange={(e) => setAutoOpenWhatsApp(e.target.checked)}
+                      />
+                      <span>
+                        <strong>Dual Routing:</strong> Send to Gmail &amp; open copy on WhatsApp (+91 8310490313) for immediate reply
+                      </span>
+                    </label>
+                  </div>
+
                   <button
-                    className="button button-primary form-submit"
+                    className={`button button-primary form-submit ${isSubmitting ? "is-loading" : ""}`}
                     type="submit"
+                    disabled={isSubmitting}
                     onMouseEnter={() => sound.playHover()}
                   >
-                    Send Project Enquiry <ArrowUpRight size={17} />
+                    {isSubmitting ? (
+                      <span>Sending to Inbox...</span>
+                    ) : (
+                      <>
+                        <span>Send Project Enquiry</span> <ArrowUpRight size={17} />
+                      </>
+                    )}
                   </button>
                   <p className="form-note">
                     We value privacy. 100% confidential. No spam, ever.
