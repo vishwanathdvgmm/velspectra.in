@@ -86,6 +86,20 @@ export default function InvoicePortal({ onClose }) {
     "100% full source code and asset ownership handover",
   ]);
 
+  // Currency conversion handler
+  const handleCurrencyChange = (newCurrency) => {
+    if (newCurrency === currency) return;
+    sound.playClick();
+    if (newCurrency === "USD" && currency === "INR") {
+      const usdVal = Math.max(50, Math.round(totalAmount / 85));
+      setTotalAmount(usdVal);
+    } else if (newCurrency === "INR" && currency === "USD") {
+      const inrVal = Math.round((totalAmount * 85) / 500) * 500;
+      setTotalAmount(inrVal);
+    }
+    setCurrency(newCurrency);
+  };
+
   // Milestone calculation
   const milestoneRates = {
     advance: {
@@ -318,7 +332,7 @@ export default function InvoicePortal({ onClose }) {
                 <div className="gen-amount-wrap">
                   <select
                     value={currency}
-                    onChange={(e) => setCurrency(e.target.value)}
+                    onChange={(e) => handleCurrencyChange(e.target.value)}
                     className="gen-curr-select"
                   >
                     <option value="INR">₹ INR</option>

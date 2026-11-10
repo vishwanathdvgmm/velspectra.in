@@ -78,6 +78,22 @@ export default function AdminPortal({ onClose }) {
 
   const [copiedKey, setCopiedKey] = useState("");
 
+  // Currency conversion handler
+  const handleCurrencyChange = (newCurrency) => {
+    if (newCurrency === currency) return;
+    sound.playClick();
+    if (newCurrency === "USD" && currency === "INR") {
+      // Convert INR to USD (1 USD ≈ 85 INR, rounded to clean amount)
+      const usdVal = Math.max(50, Math.round(totalAmount / 85));
+      setTotalAmount(usdVal);
+    } else if (newCurrency === "INR" && currency === "USD") {
+      // Convert USD to INR (1 USD ≈ 85 INR, rounded to nearest 500)
+      const inrVal = Math.round((totalAmount * 85) / 500) * 500;
+      setTotalAmount(inrVal);
+    }
+    setCurrency(newCurrency);
+  };
+
   // Milestone calculation
   const milestoneRates = {
     advance: {
@@ -407,7 +423,7 @@ export default function AdminPortal({ onClose }) {
                     <span>Currency</span>
                     <select
                       value={currency}
-                      onChange={(e) => setCurrency(e.target.value)}
+                      onChange={(e) => handleCurrencyChange(e.target.value)}
                     >
                       <option value="INR">INR (₹)</option>
                       <option value="USD">USD ($)</option>
@@ -482,7 +498,7 @@ export default function AdminPortal({ onClose }) {
                       type="number"
                       value={totalAmount}
                       onChange={(e) => setTotalAmount(Number(e.target.value))}
-                      step={500}
+                      step={currency === "INR" ? 500 : 10}
                     />
                   </label>
                 </div>
