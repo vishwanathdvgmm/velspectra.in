@@ -33,7 +33,7 @@ export default function InvoicePortal({ onClose }) {
   const [selectedMilestone, setSelectedMilestone] = useState(initialMilestone);
   const [copied, setCopied] = useState("");
   const [upiId, setUpiId] = useState("8310490313@ybl"); // Default Indian UPI ID
-  const [accountHolder, setAccountHolder] = useState("VISHWANATH M M (VELSPECTRA)");
+  const [accountHolder, setAccountHolder] = useState("VISHWANATH MANJUNATH MADURI (VELSPECTRA)");
   const [accountNumber, setAccountNumber] = useState("8310490313"); // Custom or phone linked
   const [ifscCode, setIfscCode] = useState("SBIN0001234");
   const [bankName, setBankName] = useState("State Bank of India");
@@ -660,7 +660,7 @@ export default function InvoicePortal({ onClose }) {
               </ol>
               <div className="invoice-bottom-sign">
                 <div>
-                  <strong>VELSPECTRA</strong> · Proprietor: Vishwanath M M<br />
+                  <strong>VELSPECTRA</strong> · Legal Proprietor: VISHWANATH MANJUNATH MADURI<br />
                   Digital Agency Operations · Karnataka, India
                 </div>
                 <div className="invoice-seal">
@@ -674,3 +674,4 @@ export default function InvoicePortal({ onClose }) {
     </div>
   );
 }
+

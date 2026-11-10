@@ -1265,6 +1265,14 @@ function App() {
               </p>
 
               <div className="contact-direct">
+                <div className="contact-proprietor-card">
+                  <span className="contact-proprietor-label">Legal Ownership &amp; Proprietorship</span>
+                  <div className="contact-proprietor-name">
+                    <ShieldCheck size={16} color="#7ad8e8" />
+                    <strong>VISHWANATH MANJUNATH MADURI</strong>
+                  </div>
+                  <span className="contact-proprietor-desc">Sole Proprietor · VELSPECTRA</span>
+                </div>
                 <a
                   href="mailto:vishwanathdvgmm@gmail.com"
                   onMouseEnter={() => sound.playHover()}
@@ -1460,6 +1468,25 @@ function App() {
             <p className="footer-subtext">
               Domain: <strong>velspectra.in</strong> · Sole Proprietorship · Operating from India & serving worldwide.
             </p>
+            <div className="footer-legal-ownership">
+              <p className="footer-legal-stmt">
+                VELSPECTRA is a sole proprietorship owned and operated by <strong>VISHWANATH MANJUNATH MADURI</strong>.
+              </p>
+              <div className="footer-legal-details">
+                <div className="footer-legal-row">
+                  <span className="footer-legal-label">Legal Proprietor:</span>
+                  <span className="footer-legal-val">VISHWANATH MANJUNATH MADURI</span>
+                </div>
+                <div className="footer-legal-row">
+                  <span className="footer-legal-label">Business Email:</span>
+                  <a href="mailto:vishwanathdvgmm@gmail.com" className="footer-legal-link">vishwanathdvgmm@gmail.com</a>
+                </div>
+                <div className="footer-legal-row">
+                  <span className="footer-legal-label">Contact Number:</span>
+                  <a href="tel:+918310490313" className="footer-legal-link">+91 8310490313</a>
+                </div>
+              </div>
+            </div>
             <div className="footer-trust-badges">
               <span><ShieldCheck size={13} color="#34d399" /> Direct Verified Banking &amp; UPI</span>
               <span><Lock size={13} color="#7ad8e8" /> 256-Bit SSL Encrypted</span>
@@ -1706,7 +1733,7 @@ function App() {
 
         <div className="container footer-bottom">
           <span>© {new Date().getFullYear()} VELSPECTRA (velspectra.in). ALL RIGHTS RESERVED.</span>
-          <span>SOLE PROPRIETORSHIP · INDEPENDENT DIGITAL STUDIO</span>
+          <span>SOLE PROPRIETORSHIP · PROPRIETOR: VISHWANATH MANJUNATH MADURI</span>
           <a
             href="/"
             onClick={(e) => {

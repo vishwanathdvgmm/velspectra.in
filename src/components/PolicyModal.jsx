@@ -318,13 +318,16 @@ export default function PolicyModal({ policyType, onClose }) {
       content: (
         <>
           <p>
-            <strong>VELSPECTRA</strong> operates as a registered sole
-            proprietorship digital solutions agency in India, serving ambitious
-            clients across India and globally.
+            <strong>VELSPECTRA</strong> is a sole proprietorship owned and operated by{" "}
+            <strong>VISHWANATH MANJUNATH MADURI</strong>. We operate as an independent digital
+            solutions agency based in India, serving clients across India and internationally.
           </p>
 
           <div className="policy-contact-box">
             <h4>Trade Name & Operating Entity</h4>
+            <p>
+              <strong>Legal Proprietor:</strong> VISHWANATH MANJUNATH MADURI
+            </p>
             <p>
               <strong>Business Name:</strong> VELSPECTRA
             </p>
@@ -332,7 +335,7 @@ export default function PolicyModal({ policyType, onClose }) {
               <strong>Official Website:</strong> https://velspectra.in
             </p>
             <p>
-              <strong>Official Email:</strong> vishwanathdvgmm@gmail.com
+              <strong>Business Email:</strong> vishwanathdvgmm@gmail.com
             </p>
             <p>
               <strong>Contact & WhatsApp:</strong> +91 8310490313
