@@ -1,11 +1,38 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
-  ArrowUpRight, ArrowRight, Menu, X, Sparkles, PanelsTopLeft,
-  ShoppingBag, Workflow, Gauge, Check, Globe2, Mail, ChevronDown,
-  Compass, Layers, Zap, Cpu, Award, Star, Activity, Clock,
-  MessageSquare, ShieldCheck, HeartHandshake, FileCode2,
-  CreditCard, Lock, FileText, Truck, RefreshCw, Shield, Phone,
-  QrCode
+  ArrowUpRight,
+  ArrowRight,
+  Menu,
+  X,
+  Sparkles,
+  PanelsTopLeft,
+  ShoppingBag,
+  Workflow,
+  Gauge,
+  Check,
+  Globe2,
+  Mail,
+  ChevronDown,
+  Compass,
+  Layers,
+  Zap,
+  Cpu,
+  Award,
+  Star,
+  Activity,
+  Clock,
+  MessageSquare,
+  ShieldCheck,
+  HeartHandshake,
+  FileCode2,
+  CreditCard,
+  Lock,
+  FileText,
+  Truck,
+  RefreshCw,
+  Shield,
+  Phone,
+  QrCode,
 } from "lucide-react";
 
 import ParticleCanvas from "./components/ParticleCanvas";
@@ -29,14 +56,19 @@ const services = [
     title: "Website Design & Development",
     badge: "Primary Service",
     desc: "Professional, responsive websites built with React 19 and modern styling that turn visitors into paying customers.",
-    tags: ["Business Websites", "High-Converting Landing Pages", "Portfolio Sites", "Corporate Sites"],
+    tags: [
+      "Business Websites",
+      "High-Converting Landing Pages",
+      "Portfolio Sites",
+      "Corporate Sites",
+    ],
     deliverables: [
       "Custom UI/UX Prototypes",
       "Mobile-First Responsive 60fps Code",
       "WhatsApp Direct Contact Button",
-      "Basic On-Page SEO Setup"
+      "Basic On-Page SEO Setup",
     ],
-    timeline: "5 – 14 Days"
+    timeline: "5 – 14 Days",
   },
   {
     icon: ShoppingBag,
@@ -44,14 +76,19 @@ const services = [
     title: "E-Commerce Development",
     badge: "Specialized",
     desc: "Modern digital storefronts engineered for smooth product browsing, seamless shopping carts, and reliable checkout.",
-    tags: ["Product Catalogues", "Cart & Checkout Flows", "Razorpay / Stripe Gateways", "Order Management"],
+    tags: [
+      "Product Catalogues",
+      "Cart & Checkout Flows",
+      "Razorpay / Stripe Gateways",
+      "Order Management",
+    ],
     deliverables: [
       "Product Catalog Architecture",
       "Secure Payment Gateway Integration",
       "Customer Order Notification Flows",
-      "Store Administration Setup"
+      "Store Administration Setup",
     ],
-    timeline: "2 – 4 Weeks"
+    timeline: "2 – 4 Weeks",
   },
   {
     icon: Gauge,
@@ -59,14 +96,19 @@ const services = [
     title: "Website Maintenance & Care",
     badge: "Recurring Retainer",
     desc: "Keep your website healthy, fast, secure, and updated with regular content refreshes and monitoring.",
-    tags: ["Content Updates", "Bug Fixes", "Performance Speed Checks", "Security & Backups"],
+    tags: [
+      "Content Updates",
+      "Bug Fixes",
+      "Performance Speed Checks",
+      "Security & Backups",
+    ],
     deliverables: [
       "Monthly Content & Price Updates",
       "Core Web Vitals Monitoring",
       "Security & Dependency Patches",
-      "Direct Priority Founder Support"
+      "Direct Priority Founder Support",
     ],
-    timeline: "Monthly Retainer"
+    timeline: "Monthly Retainer",
   },
   {
     icon: Workflow,
@@ -74,14 +116,19 @@ const services = [
     title: "Business Automation & Integrations",
     badge: "Workflow Efficiency",
     desc: "Connect your website directly to your daily communication channels, CRM, and booking calendars.",
-    tags: ["WhatsApp One-Click Enquiry", "Form-to-Email Routing", "Appointment Booking", "Lead Capture Sync"],
+    tags: [
+      "WhatsApp One-Click Enquiry",
+      "Form-to-Email Routing",
+      "Appointment Booking",
+      "Lead Capture Sync",
+    ],
     deliverables: [
       "Instant WhatsApp Lead Routing",
       "Interactive Booking Calendar (Cal.com)",
       "Automated Email Inquiries to Owner",
-      "Google Sheets Lead Sync"
+      "Google Sheets Lead Sync",
     ],
-    timeline: "3 – 7 Days"
+    timeline: "3 – 7 Days",
   },
   {
     icon: Zap,
@@ -89,15 +136,20 @@ const services = [
     title: "Digital Optimization & SEO",
     badge: "Performance & Visibility",
     desc: "Ensure your website loads instantly under 0.8 seconds and is indexed correctly on Google Search.",
-    tags: ["SEO Foundations", "Sub-Second Load Times", "Google Analytics", "Conversion Tuning"],
+    tags: [
+      "SEO Foundations",
+      "Sub-Second Load Times",
+      "Google Analytics",
+      "Conversion Tuning",
+    ],
     deliverables: [
       "Lighthouse 95+ Performance Tuning",
       "Meta Tags, OpenGraph & Sitemaps",
       "Google Search Console Indexing",
-      "Traffic & Lead Analytics Setup"
+      "Traffic & Lead Analytics Setup",
     ],
-    timeline: "Add-on or Standalone"
-  }
+    timeline: "Add-on or Standalone",
+  },
 ];
 
 // Industry-Specific Demonstration Concepts from VELSPECTRA Model.md §3 & §10
@@ -109,8 +161,15 @@ const projects = [
     type: "Restaurant & Dining Website",
     tone: "warm",
     label: "A place for good food.",
-    challenge: "Restaurants frequently rely solely on Instagram without an organized digital menu, location directions, or one-click table reservation link.",
-    tech: ["React 19", "Interactive Menu", "WhatsApp Table Booking", "Google Maps Directions", "Mobile-First"]
+    challenge:
+      "Restaurants frequently rely solely on Instagram without an organized digital menu, location directions, or one-click table reservation link.",
+    tech: [
+      "React 19",
+      "Interactive Menu",
+      "WhatsApp Table Booking",
+      "Google Maps Directions",
+      "Mobile-First",
+    ],
   },
   {
     id: "02",
@@ -119,8 +178,15 @@ const projects = [
     type: "Salon & Spa Portal",
     tone: "lime",
     label: "Make room to refresh.",
-    challenge: "Salons lose customers when their pricing structure is unclear and booking requires phone calls during busy styling sessions.",
-    tech: ["Vite", "Service & Pricing Lookbook", "Direct WhatsApp Booking", "Instagram Feed Sync", "Cloudflare Pages"]
+    challenge:
+      "Salons lose customers when their pricing structure is unclear and booking requires phone calls during busy styling sessions.",
+    tech: [
+      "Vite",
+      "Service & Pricing Lookbook",
+      "Direct WhatsApp Booking",
+      "Instagram Feed Sync",
+      "Cloudflare Pages",
+    ],
   },
   {
     id: "03",
@@ -129,8 +195,15 @@ const projects = [
     type: "Medical Practice Website",
     tone: "blue",
     label: "Clarity for patient care.",
-    challenge: "Clinics need to establish immediate professional trust, present doctor credentials, and allow patients to request appointment slots with ease.",
-    tech: ["React 19", "Doctor Profiles", "Appointment Enquiry Form", "Patient FAQs", "HIPAA/Privacy Ready"]
+    challenge:
+      "Clinics need to establish immediate professional trust, present doctor credentials, and allow patients to request appointment slots with ease.",
+    tech: [
+      "React 19",
+      "Doctor Profiles",
+      "Appointment Enquiry Form",
+      "Patient FAQs",
+      "HIPAA/Privacy Ready",
+    ],
   },
   {
     id: "04",
@@ -139,100 +212,174 @@ const projects = [
     type: "Consulting & Corporate Site",
     tone: "violet",
     label: "Strategic clarity for what comes next.",
-    challenge: "Professional firms require a polished corporate identity, case study portfolios, and authoritative presentation to win high-ticket B2B client proposals.",
-    tech: ["Tailwind CSS", "Case Study Portfolio", "PDF Proposal Lead Magnet", "Calendly Integration", "Edge Hosting"]
-  }
+    challenge:
+      "Professional firms require a polished corporate identity, case study portfolios, and authoritative presentation to win high-ticket B2B client proposals.",
+    tech: [
+      "Tailwind CSS",
+      "Case Study Portfolio",
+      "PDF Proposal Lead Magnet",
+      "Calendly Integration",
+      "Edge Hosting",
+    ],
+  },
 ];
 
-// Official Pricing Packages from VELSPECTRA Model.md §5
+// Officially Approved Website Development Services & Starting Prices
 const pricingPackages = [
   {
-    tier: "01 - Entry Level",
-    name: "Starter Website",
-    priceINR: "₹4,999 – ₹7,999",
-    priceUSD: "$99 – $149",
-    billing: "One-time project fee",
-    tagline: "Ideal for new local businesses establishing their first online presence.",
+    tier: "01 / High-Converting",
+    name: "Landing Page Development",
+    startingINR: "₹2,999",
+    startingUSD: "$49",
+    billing: "Starting from",
+    tagline:
+      "Single high-impact, mobile-first landing page engineered to turn traffic into paying leads.",
+    desc: "Single-page responsive layout, clear value proposition, contact/lead capture forms, and direct WhatsApp integration.",
     features: [
-      "1-Page responsive mobile-friendly website",
-      "Business introduction, story & photos",
-      "Services overview & price/menu showcase",
-      "WhatsApp direct enquiry button",
-      "Basic SEO setup & Google Maps embed",
-      "1 revision round included",
-      "Full source code & 100% ownership handover"
+      "1 High-converting responsive landing page",
+      "Direct WhatsApp & lead enquiry triggers",
+      "Sub-second load speed on Cloudflare Pages",
+      "Basic SEO metadata & Google Search setup",
+      "100% full source code & asset ownership",
     ],
-    popular: false
+    popular: false,
   },
   {
-    tier: "02 - Recommended",
-    name: "Business Website",
-    priceINR: "₹9,999 – ₹19,999",
-    priceUSD: "$199 – $399",
-    billing: "One-time project fee",
-    tagline: "Our most popular package for established businesses, salons, clinics, and firms.",
+    tier: "02 / Recommended",
+    name: "Business Website Development",
+    startingINR: "₹5,999",
+    startingUSD: "$99",
+    billing: "Starting from",
+    tagline:
+      "Multi-page business website establishing digital credibility and driving client inquiries.",
+    desc: "Up to 5 professional custom pages (Home, About, Services, Portfolio, Contact) with responsive styling and SEO setup.",
     features: [
-      "Up to 5 standard custom pages",
-      "Bespoke visual UI/UX design (Figma)",
-      "Contact, enquiry & appointment forms",
-      "WhatsApp & social media integrations",
-      "On-page SEO optimization & metadata",
-      "Sub-second load times on Cloudflare Pages",
-      "2 revision rounds included",
-      "Full client ownership & documentation"
+      "Up to 5 custom responsive pages",
+      "Tailored visual UI/UX layout (Figma)",
+      "Contact, consultation & inquiry forms",
+      "Fast page load speed on Cloudflare Pages",
+      "2 revision rounds & full ownership",
     ],
-    popular: true
+    popular: true,
   },
   {
-    tier: "03 - Advanced",
-    name: "Professional Website",
-    priceINR: "₹24,999 – ₹49,999",
-    priceUSD: "$499 – $999",
-    billing: "One-time project fee",
-    tagline: "For growing companies, startups, and brands demanding distinctive polish.",
+    tier: "03 / Showcase",
+    name: "Portfolio Website Development",
+    startingINR: "₹8,999",
+    startingUSD: "$149",
+    billing: "Starting from",
+    tagline:
+      "Visual-rich, elegant digital portfolio tailored for creators, consultants, and professionals.",
+    desc: "Interactive project gallery, case study layouts, client testimonials, resume/experience display, and social integrations.",
     features: [
-      "Custom multi-page web architecture",
-      "Interactive animations & micro-interactions",
-      "Google Analytics & lead tracking setup",
-      "CRM & automated email routing",
-      "Comprehensive speed & Core Web Vitals audit",
-      "3 revision rounds included",
-      "Priority founder support during launch"
+      "Interactive work showcase gallery",
+      "Engaging animations & micro-interactions",
+      "Dedicated case study & client testimonial layouts",
+      "Optimized imagery & media delivery",
+      "Domain setup & 100% code ownership",
     ],
-    popular: false
+    popular: false,
   },
   {
-    tier: "04 - Specialized",
-    name: "E-Commerce Website",
-    priceINR: "₹29,999 – ₹79,999+",
-    priceUSD: "$699 – $1,499+",
-    billing: "One-time project fee",
-    tagline: "Complete online storefront with payment gateways and order management.",
+    tier: "04 / Hospitality",
+    name: "Restaurant Website Development",
+    startingINR: "₹11,999",
+    startingUSD: "$199",
+    billing: "Starting from",
+    tagline:
+      "Vibrant culinary digital experience featuring online menus, directions, and reservation booking.",
+    desc: "Digital food & beverage menu, WhatsApp table reservation booking, Google Maps directions, and business hours.",
     features: [
-      "Full product catalogue & category browsing",
-      "Shopping cart & streamlined checkout",
-      "Razorpay / Stripe payment gateway integration",
-      "Automated order email & WhatsApp alerts",
-      "Store administration management setup",
-      "Pre-launch testing & security audit",
-      "Post-launch staff handover guide"
+      "Mobile-friendly digital food & beverage menu",
+      "WhatsApp one-tap reservation booking",
+      "Location mapping, opening hours & contact",
+      "Photo showcase for ambience & specialties",
+      "Local SEO setup for Google search discovery",
     ],
-    popular: false
-  }
+    popular: false,
+  },
+  {
+    tier: "05 / Storefront",
+    name: "E-commerce Website Development",
+    startingINR: "₹14,999",
+    startingUSD: "$249",
+    billing: "Starting from",
+    tagline:
+      "Full-featured online digital storefront with product catalogue, cart, and payment gateway.",
+    desc: "Catalog architecture, product categorization, shopping cart, payment integration, and automated order alerts.",
+    features: [
+      "Product catalog with categories & search",
+      "Interactive shopping cart & checkout flow",
+      "Payment gateway integration (UPI, cards, net banking)",
+      "Automated order notification alerts",
+      "Store management handover & guidance",
+    ],
+    popular: true,
+  },
+  {
+    tier: "06 / Enterprise",
+    name: "Custom Website Development",
+    startingINR: "₹19,999",
+    startingUSD: "$349",
+    billing: "Starting from",
+    tagline:
+      "Bespoke web architectures, custom dashboards, interactive client portals, and integrations.",
+    desc: "Specialized architectures, third-party API connections, custom workflows, interactive tools, and direct founder delivery.",
+    features: [
+      "Fully bespoke web application architecture",
+      "Advanced third-party API & webhook integrations",
+      "Interactive UI components & custom tools",
+      "Priority performance engineering & security",
+      "Direct founder architecture & launch support",
+    ],
+    popular: false,
+  },
 ];
 
 // Monthly Care Retainers from Model.md §5.C
 const carePlans = [
-  { name: "Basic Care", inr: "₹499", usd: "$9", desc: "Minor content, text & image updates" },
-  { name: "Standard Care", inr: "₹999", usd: "$19", desc: "Regular updates, bug fixes, security & speed monitoring", popular: true },
-  { name: "Premium Care", inr: "₹1,999", usd: "$39", desc: "Priority updates, monthly analytics & direct founder hotline" }
+  {
+    name: "Basic Care",
+    inr: "₹499",
+    usd: "$9",
+    desc: "Minor content, text & image updates",
+  },
+  {
+    name: "Standard Care",
+    inr: "₹999",
+    usd: "$19",
+    desc: "Regular updates, bug fixes, security & speed monitoring",
+    popular: true,
+  },
+  {
+    name: "Premium Care",
+    inr: "₹1,999",
+    usd: "$39",
+    desc: "Priority updates, monthly analytics & direct founder hotline",
+  },
 ];
 
 const metrics = [
-  { value: "100%", label: "Client Code Ownership", sub: "Domain, host & code in your name" },
-  { value: "< 0.8s", label: "Mobile Loading Speed", sub: "Cloudflare Pages global edge CDN" },
-  { value: "₹0", label: "Hidden Subscriptions", sub: "Transparent milestone pricing" },
-  { value: "Direct", label: "Founder Collaboration", sub: "Zero middleman account managers" },
+  {
+    value: "100%",
+    label: "Client Code Ownership",
+    sub: "Domain, host & code in your name",
+  },
+  {
+    value: "< 0.8s",
+    label: "Mobile Loading Speed",
+    sub: "Cloudflare Pages global edge CDN",
+  },
+  {
+    value: "₹0",
+    label: "Hidden Subscriptions",
+    sub: "Transparent milestone pricing",
+  },
+  {
+    value: "Direct",
+    label: "Founder Collaboration",
+    sub: "Zero middleman account managers",
+  },
 ];
 
 // Global smooth navigation helper that updates clean URLs without '#'
@@ -281,7 +428,7 @@ function Header({ currency, setCurrency, onNavigate }) {
     ["Pricing", "pricing"],
     ["Work", "work"],
     ["Process", "process"],
-    ["About", "about"]
+    ["About", "about"],
   ];
 
   useEffect(() => {
@@ -415,7 +562,9 @@ function ProjectCard({ project, onSelect }) {
           transform: isHovered
             ? `perspective(900px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateZ(8px)`
             : "perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0px)",
-          transition: isHovered ? "transform 0.08s linear" : "transform 0.35s ease-out",
+          transition: isHovered
+            ? "transform 0.08s linear"
+            : "transform 0.35s ease-out",
         }}
       >
         <div className="project-art">
@@ -428,7 +577,9 @@ function ProjectCard({ project, onSelect }) {
           />
 
           <div className="project-browser">
-            <span /><span /><span />
+            <span />
+            <span />
+            <span />
             <small>INDUSTRY BLUEPRINT / {project.id}</small>
           </div>
 
@@ -450,7 +601,9 @@ function ProjectCard({ project, onSelect }) {
 
         <div className="project-meta">
           <div>
-            <span className="eyebrow">{project.id} / {project.type}</span>
+            <span className="eyebrow">
+              {project.id} / {project.type}
+            </span>
             <h3>{project.name}</h3>
           </div>
           <span className="project-link" aria-label="Open case study">
@@ -488,9 +641,16 @@ function App() {
       }
 
       // 2. Parse clean pathname without leading/trailing slashes
-      const path = window.location.pathname.replace(/^\/|\/$/g, "").toLowerCase();
+      const path = window.location.pathname
+        .replace(/^\/|\/$/g, "")
+        .toLowerCase();
 
-      if (path === "admin" || path === "founder" || path === "console" || path === "admin-portal") {
+      if (
+        path === "admin" ||
+        path === "founder" ||
+        path === "console" ||
+        path === "admin-portal"
+      ) {
         setShowAdminPortal(true);
       } else if (path === "terms") {
         setActivePolicy("terms");
@@ -525,8 +685,15 @@ function App() {
   }, []);
 
   // Form states
-  const [formCategory, setFormCategory] = useState("Business Website (₹9,999 - ₹19,999)");
-  const [formBudget, setFormBudget] = useState(currency === "INR" ? "₹10,000 – ₹20,000" : "$200 – $400");
+  const [formCategory, setFormCategory] = useState(
+    "Business Website Development (Starting from ₹5,999)",
+  );
+  const [formCarePlan, setFormCarePlan] = useState(
+    "None (One-time project delivery)",
+  );
+  const [formBudget, setFormBudget] = useState(
+    currency === "INR" ? "₹10,000 – ₹20,000" : "$200 – $400",
+  );
   const [formName, setFormName] = useState("");
   const [formEmail, setFormEmail] = useState("");
   const [formPhone, setFormPhone] = useState("");
@@ -534,7 +701,12 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailDelivered, setEmailDelivered] = useState(false);
 
-  const budgetsINR = ["₹5,000 – ₹10,000", "₹10,000 – ₹20,000", "₹20,000 – ₹50,000", "₹50,000+"];
+  const budgetsINR = [
+    "₹5,000 – ₹10,000",
+    "₹10,000 – ₹20,000",
+    "₹20,000 – ₹50,000",
+    "₹50,000+",
+  ];
   const budgetsUSD = ["$100 – $200", "$200 – $400", "$400 – $1,000", "$1,000+"];
 
   // Update budget selection when currency switches
@@ -548,13 +720,17 @@ function App() {
 
   // Format pre-filled WhatsApp lead text with complete content and project link
   const getWhatsAppEnquiryUrl = () => {
-    const origin = typeof window !== "undefined" ? window.location.origin : "https://velspectra.in";
+    const origin =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "https://velspectra.in";
     const text =
       `*New Project Enquiry — VELSPECTRA*\n\n` +
       `*Client Name:* ${formName || "Valued Client"}\n` +
       `*Email:* ${formEmail || "Not provided"}\n` +
       `*Phone:* ${formPhone || "Not provided"}\n` +
       `*Selected Package:* ${formCategory}\n` +
+      `*Care Retainer Add-on:* ${formCarePlan}\n` +
       `*Target Budget:* ${currency} ${formBudget}\n\n` +
       `*Project Requirements & Details:*\n${formMessage || "I need a professional website developed."}\n\n` +
       `*Project Reference Link:* ${origin}/services\n` +
@@ -565,7 +741,7 @@ function App() {
   // Robust reveal observer
   useEffect(() => {
     const nodes = document.querySelectorAll(
-      ".intro-content, .section-heading, .service-row, .project-card, .process-intro, .process-step, .statement-inner, .contact-copy, .contact-form, .metric-card, .calculator-widget, .pricing-card, .care-card"
+      ".intro-content, .section-heading, .service-row, .project-card, .process-intro, .process-step, .statement-inner, .contact-copy, .contact-form, .metric-card, .calculator-widget, .pricing-card, .care-card",
     );
 
     nodes.forEach((node) => {
@@ -585,7 +761,7 @@ function App() {
           }
         });
       },
-      { threshold: 0.05, rootMargin: "0px 0px -20px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px -20px 0px" },
     );
 
     nodes.forEach((node) => {
@@ -597,11 +773,23 @@ function App() {
     return () => observer.disconnect();
   }, [selectedFilter, currency]);
 
-  // Handle calculator selection transfer
-  const handleScopeSelect = (packageName, summary) => {
+  // Handle calculator selection transfer with dynamic budget auto-selection
+  const handleScopeSelect = (packageName, summary, packageId) => {
     setFormCategory(packageName);
+    // Dynamically match client's blueprint to appropriate budget tier
+    if (packageId === "landing") {
+      setFormBudget(currency === "INR" ? "₹5,000 – ₹10,000" : "$100 – $200");
+    } else if (packageId === "business" || packageId === "portfolio") {
+      setFormBudget(currency === "INR" ? "₹10,000 – ₹20,000" : "$200 – $400");
+    } else if (packageId === "restaurant" || packageId === "ecommerce") {
+      setFormBudget(currency === "INR" ? "₹20,000 – ₹50,000" : "$400 – $1,000");
+    } else {
+      setFormBudget(currency === "INR" ? "₹50,000+" : "$1,000+");
+    }
     setFormMessage((prev) =>
-      prev ? `${prev}\n\n[Blueprint]: ${summary}` : `Hi VELSPECTRA team,\n\nI want to get started with the ${packageName} package.\n\nBlueprint details:\n• ${summary}\n\nPlease share the timeline and next steps.`
+      prev
+        ? `${prev}\n\n[Blueprint]: ${summary}`
+        : `Hi VELSPECTRA team,\n\nI want to get started with the ${packageName} package.\n\nBlueprint details:\n• ${summary}\n\nPlease share the timeline and next steps.`,
     );
   };
 
@@ -618,25 +806,31 @@ function App() {
       "Client Email": formEmail,
       "Client Phone / WhatsApp": formPhone || "Not provided",
       "Selected Package": formCategory,
+      "Care Retainer Add-on": formCarePlan,
       "Target Budget": `${currency} ${formBudget}`,
       "Project Requirements": formMessage,
-      "Submission Timestamp": new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+      "Submission Timestamp": new Date().toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+      }),
       _template: "table",
-      _captcha: "false"
+      _captcha: "false",
     };
 
     let delivered = false;
 
     // 1. Direct API delivery to your verified Gmail via FormSubmit
     try {
-      const res = await fetch("https://formsubmit.co/ajax/vishwanathdvgmm@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+      const res = await fetch(
+        "https://formsubmit.co/ajax/vishwanathdvgmm@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
         },
-        body: JSON.stringify(payload)
-      });
+      );
       if (res.ok) {
         delivered = true;
       }
@@ -656,8 +850,8 @@ function App() {
           package: formCategory,
           budget: `${currency} ${formBudget}`,
           message: formMessage,
-          currency: currency
-        })
+          currency: currency,
+        }),
       });
     } catch (_) {}
 
@@ -678,7 +872,7 @@ function App() {
       : projects.filter(
           (p) =>
             p.category.toLowerCase().includes(selectedFilter) ||
-            p.type.toLowerCase().includes(selectedFilter)
+            p.type.toLowerCase().includes(selectedFilter),
         );
 
   return (
@@ -749,13 +943,17 @@ function App() {
               </div>
 
               <h1>
-                Make your<br />
-                <span>next move</span><br />
+                Make your
+                <br />
+                <span>next move</span>
+                <br />
                 mean more.
               </h1>
 
               <p className="hero-description">
-                VELSPECTRA helps businesses establish and improve their digital presence through professionally designed websites, e-commerce stores and practical digital automation.
+                VELSPECTRA helps businesses establish and improve their digital
+                presence through professionally designed websites, e-commerce
+                stores and practical digital automation.
               </p>
 
               <div className="hero-actions">
@@ -796,7 +994,9 @@ function App() {
             <HeroVisual />
 
             <div className="hero-bottom">
-              <span>BUILDING DIGITAL EXPERIENCES THAT MOVE BUSINESSES FORWARD.</span>
+              <span>
+                BUILDING DIGITAL EXPERIENCES THAT MOVE BUSINESSES FORWARD.
+              </span>
               <a
                 href="/services"
                 onMouseEnter={() => sound.playHover()}
@@ -821,12 +1021,15 @@ function App() {
             <div className="eyebrow">01 / WHO WE ARE</div>
             <div className="intro-content">
               <h2>
-                Good businesses deserve a{" "}
-                <span>better digital presence.</span>
+                Good businesses deserve a <span>better digital presence.</span>
               </h2>
               <div className="intro-bottom">
                 <p>
-                  VELSPECTRA is not simply selling website code. We sell complete business outcomes: professional presentation of your products and services, customer discovery, automated WhatsApp enquiries, and systems that simplify everyday business operations.
+                  VELSPECTRA is not simply selling website code. We sell
+                  complete business outcomes: professional presentation of your
+                  products and services, customer discovery, automated WhatsApp
+                  enquiries, and systems that simplify everyday business
+                  operations.
                 </p>
                 <a
                   className="text-link"
@@ -867,73 +1070,94 @@ function App() {
               <div>
                 <div className="eyebrow">02 / SERVICE CATALOGUE</div>
                 <h2>
-                  Focused services built around<br />
+                  Focused services built around
+                  <br />
                   <span>your business outcomes.</span>
                 </h2>
               </div>
               <p>
-                A focused service portfolio spanning high-speed websites, e-commerce storefronts, maintenance retainers, and WhatsApp automation.
+                A focused service portfolio spanning high-speed websites,
+                e-commerce storefronts, maintenance retainers, and WhatsApp
+                automation.
               </p>
             </div>
 
             <div className="service-list">
-              {services.map(({ icon: Icon, number, title, badge, desc, tags, deliverables, timeline }) => {
-                const isExpanded = expandedService === number;
-                return (
-                  <article
-                    className={`service-row ${isExpanded ? "is-expanded" : ""}`}
-                    key={number}
-                    onClick={() => {
-                      sound.playClick();
-                      setExpandedService(isExpanded ? null : number);
-                    }}
-                    onMouseEnter={() => sound.playHover()}
-                    data-cursor="EXPAND"
-                  >
-                    <span className="service-number">{number}</span>
-                    <div className="service-icon">
-                      <Icon size={23} />
-                    </div>
-                    <div className="service-main">
-                      <div className="service-title-row">
-                        <h3>{title}</h3>
-                        <span className="service-timeline-badge">
-                          <Clock size={12} /> {timeline}
-                        </span>
-                        <span className="service-division-badge">{badge}</span>
-                      </div>
-                      <p>{desc}</p>
-                      <div className="service-tags">
-                        {tags.map((t) => (
-                          <span key={t}>{t}</span>
-                        ))}
-                      </div>
-
-                      {/* Expandable deliverables breakdown */}
-                      {isExpanded && (
-                        <div className="service-details-drawer">
-                          <div className="deliverables-heading">Deliverables & Scope:</div>
-                          <div className="deliverables-grid">
-                            {deliverables.map((item, i) => (
-                              <div key={i} className="deliverable-item">
-                                <Check size={14} className="deliverable-check" />
-                                <span>{item}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    <button
-                      className="service-arrow"
-                      aria-label={`Toggle details for ${title}`}
-                      type="button"
+              {services.map(
+                ({
+                  icon: Icon,
+                  number,
+                  title,
+                  badge,
+                  desc,
+                  tags,
+                  deliverables,
+                  timeline,
+                }) => {
+                  const isExpanded = expandedService === number;
+                  return (
+                    <article
+                      className={`service-row ${isExpanded ? "is-expanded" : ""}`}
+                      key={number}
+                      onClick={() => {
+                        sound.playClick();
+                        setExpandedService(isExpanded ? null : number);
+                      }}
+                      onMouseEnter={() => sound.playHover()}
+                      data-cursor="EXPAND"
                     >
-                      <ArrowUpRight size={18} />
-                    </button>
-                  </article>
-                );
-              })}
+                      <span className="service-number">{number}</span>
+                      <div className="service-icon">
+                        <Icon size={23} />
+                      </div>
+                      <div className="service-main">
+                        <div className="service-title-row">
+                          <h3>{title}</h3>
+                          <span className="service-timeline-badge">
+                            <Clock size={12} /> {timeline}
+                          </span>
+                          <span className="service-division-badge">
+                            {badge}
+                          </span>
+                        </div>
+                        <p>{desc}</p>
+                        <div className="service-tags">
+                          {tags.map((t) => (
+                            <span key={t}>{t}</span>
+                          ))}
+                        </div>
+
+                        {/* Expandable deliverables breakdown */}
+                        {isExpanded && (
+                          <div className="service-details-drawer">
+                            <div className="deliverables-heading">
+                              Deliverables & Scope:
+                            </div>
+                            <div className="deliverables-grid">
+                              {deliverables.map((item, i) => (
+                                <div key={i} className="deliverable-item">
+                                  <Check
+                                    size={14}
+                                    className="deliverable-check"
+                                  />
+                                  <span>{item}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <button
+                        className="service-arrow"
+                        aria-label={`Toggle details for ${title}`}
+                        type="button"
+                      >
+                        <ArrowUpRight size={18} />
+                      </button>
+                    </article>
+                  );
+                },
+              )}
             </div>
           </div>
         </section>
@@ -943,15 +1167,19 @@ function App() {
           <div className="container">
             <div className="section-heading">
               <div>
-                <div className="eyebrow">03 / PACKAGES & TRANSPARENT PRICING</div>
+                <div className="eyebrow">
+                  03 / PACKAGES & TRANSPARENT PRICING
+                </div>
                 <h2>
-                  Predictable investments.<br />
+                  Predictable investments.
+                  <br />
                   <span>Zero hidden charges.</span>
                 </h2>
               </div>
               <div className="pricing-header-right">
                 <p>
-                  Clearly defined page counts, revision limits, and inclusions. You always own 100% of your domain, hosting, and code.
+                  Clearly defined page counts, revision limits, and inclusions.
+                  You always own 100% of your domain, hosting, and code.
                 </p>
                 <div className="currency-selector-badge">
                   <span>Showing in:</span>
@@ -973,7 +1201,7 @@ function App() {
               </div>
             </div>
 
-            {/* 4 Core Packages Grid from Model.md §5.A */}
+            {/* 6 Official Website Development Services Grid */}
             <div className="pricing-grid">
               {pricingPackages.map((pkg, idx) => (
                 <div
@@ -981,15 +1209,18 @@ function App() {
                   className={`pricing-card ${pkg.popular ? "is-featured" : ""}`}
                   onMouseEnter={() => sound.playHover()}
                 >
-                  {pkg.popular && <div className="popular-badge">RECOMMENDED</div>}
+                  {pkg.popular && (
+                    <div className="popular-badge">RECOMMENDED</div>
+                  )}
                   <div className="pkg-tier">{pkg.tier}</div>
                   <h3 className="pkg-name">{pkg.name}</h3>
                   <div className="pkg-price-wrap">
+                    <span className="pkg-billing-prefix">Starting from</span>
                     <span className="pkg-price">
-                      {currency === "INR" ? pkg.priceINR : pkg.priceUSD}
+                      {currency === "INR" ? pkg.startingINR : pkg.startingUSD}
                     </span>
-                    <span className="pkg-billing">{pkg.billing}</span>
                   </div>
+                  <p className="pkg-service-desc">{pkg.desc}</p>
                   <p className="pkg-tagline">{pkg.tagline}</p>
 
                   <ul className="pkg-features">
@@ -1007,14 +1238,26 @@ function App() {
                     onClick={(e) => {
                       e.preventDefault();
                       sound.playClick();
-                      setFormCategory(`${pkg.name} (${currency === "INR" ? pkg.priceINR : pkg.priceUSD})`);
+                      setFormCategory(
+                        `${pkg.name} (Starting from ${currency === "INR" ? pkg.startingINR : pkg.startingUSD})`,
+                      );
                       scrollToSection("contact");
                     }}
                   >
-                    Select {pkg.name} <ArrowUpRight size={15} />
+                    Request a Quote <ArrowUpRight size={15} />
                   </a>
                 </div>
               ))}
+            </div>
+
+            {/* Required Pricing Clarification Banner */}
+            <div className="pricing-clarification-banner">
+              <ShieldCheck size={20} color="#7ad8e8" />
+              <p>
+                <strong>Transparent Pricing Note:</strong> Final project pricing
+                depends on the required features, complexity, integrations, and
+                project scope. Contact us for a customized quotation.
+              </p>
             </div>
 
             {/* Monthly Care Retainers from Model.md §5.C */}
@@ -1024,12 +1267,18 @@ function App() {
                   <span className="eyebrow">RECURRING SUPPORT</span>
                   <h3>Website Care & Maintenance Retainers</h3>
                 </div>
-                <p>Never worry about content updates, broken links, or speed degradation after launch.</p>
+                <p>
+                  Never worry about content updates, broken links, or speed
+                  degradation after launch.
+                </p>
               </div>
 
               <div className="care-grid">
                 {carePlans.map((plan, idx) => (
-                  <div key={idx} className={`care-card ${plan.popular ? "care-featured" : ""}`}>
+                  <div
+                    key={idx}
+                    className={`care-card ${plan.popular ? "care-featured" : ""}`}
+                  >
                     <div className="care-top">
                       <h4>{plan.name}</h4>
                       <div className="care-price">
@@ -1057,15 +1306,33 @@ function App() {
               <div className="payment-notice-content">
                 <h4>Structured, Transparent Payment Process</h4>
                 <p>
-                  VELSPECTRA accepts payments via agreed manual methods (UPI &amp; domestic bank transfers for India; supported international bank wires for overseas clients). Payment details are issued on an official project invoice only after your scope and quotation are approved. Work commences once the agreed 50% advance has been independently verified.
+                  VELSPECTRA accepts payments via agreed manual methods (UPI
+                  &amp; domestic bank transfers for India; supported
+                  international bank wires for overseas clients). Payment
+                  details are issued on an official project invoice only after
+                  your scope and quotation are approved. Work commences once the
+                  agreed 50% advance has been independently verified.
                 </p>
                 <div className="payment-notice-milestones">
-                  <span><strong>50%</strong> Project Advance</span>
-                  <span><strong>30%</strong> Development Milestone</span>
-                  <span><strong>20%</strong> Final Handover</span>
+                  <span>
+                    <strong>50%</strong> Project Advance
+                  </span>
+                  <span>
+                    <strong>30%</strong> Development Milestone
+                  </span>
+                  <span>
+                    <strong>20%</strong> Final Handover
+                  </span>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center" }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                }}
+              >
                 <button
                   type="button"
                   className="payment-notice-btn"
@@ -1075,12 +1342,20 @@ function App() {
                     window.history.pushState(null, "", "/invoice");
                   }}
                 >
-                  <QrCode size={14} style={{ marginRight: 6, verticalAlign: "middle" }} /> View Invoice &amp; UPI QR
+                  <QrCode
+                    size={14}
+                    style={{ marginRight: 6, verticalAlign: "middle" }}
+                  />{" "}
+                  View Invoice &amp; UPI QR
                 </button>
                 <button
                   type="button"
                   className="payment-notice-btn"
-                  style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.15)", color: "#fff" }}
+                  style={{
+                    background: "rgba(255,255,255,0.06)",
+                    borderColor: "rgba(255,255,255,0.15)",
+                    color: "#fff",
+                  }}
                   onClick={() => {
                     sound.playClick();
                     setActivePolicy("payment");
@@ -1101,12 +1376,15 @@ function App() {
               <div>
                 <div className="eyebrow">04 / DEMONSTRATION WORK</div>
                 <h2>
-                  Tailored solutions for<br />
+                  Tailored solutions for
+                  <br />
                   <span>real businesses.</span>
                 </h2>
               </div>
               <p>
-                Reusable, high-speed industry architectures adapted to restaurants, clinics, wellness studios, and corporate advisories.
+                Reusable, high-speed industry architectures adapted to
+                restaurants, clinics, wellness studios, and corporate
+                advisories.
               </p>
             </div>
 
@@ -1117,7 +1395,7 @@ function App() {
                 ["restaurants", "Restaurants & Cafés"],
                 ["wellness", "Salons & Spas"],
                 ["clinics", "Clinics & Doctors"],
-                ["corporate", "Corporate & Consulting"]
+                ["corporate", "Corporate & Consulting"],
               ].map(([key, label]) => (
                 <button
                   key={key}
@@ -1152,26 +1430,39 @@ function App() {
             <div className="process-intro">
               <div className="eyebrow">05 / HOW WE DELIVER</div>
               <h2>
-                Clear steps.<br />
+                Clear steps.
+                <br />
                 <span>Honest agreements.</span>
               </h2>
               <p>
-                A standard operating procedure that protects your time, ensures high design quality, and guarantees you own your entire digital asset.
+                A standard operating procedure that protects your time, ensures
+                high design quality, and guarantees you own your entire digital
+                asset.
               </p>
 
               <div className="process-guarantee">
-                <div className="guarantee-icon"><ShieldCheck size={18} /></div>
+                <div className="guarantee-icon">
+                  <ShieldCheck size={18} />
+                </div>
                 <div>
                   <strong>Client Ownership Policy</strong>
-                  <p>You own your domain, hosting, and complete source code. No proprietary lock-in. Zero surprise monthly software fees.</p>
+                  <p>
+                    You own your domain, hosting, and complete source code. No
+                    proprietary lock-in. Zero surprise monthly software fees.
+                  </p>
                 </div>
               </div>
 
               <div className="process-guarantee" style={{ marginTop: "14px" }}>
-                <div className="guarantee-icon"><HeartHandshake size={18} /></div>
+                <div className="guarantee-icon">
+                  <HeartHandshake size={18} />
+                </div>
                 <div>
                   <strong>Simple Payment Terms</strong>
-                  <p>50% advance before development begins, 50% only after you approve the preview and before final deployment.</p>
+                  <p>
+                    50% advance before development begins, 50% only after you
+                    approve the preview and before final deployment.
+                  </p>
                 </div>
               </div>
             </div>
@@ -1183,29 +1474,45 @@ function App() {
                   t: "Discovery & Requirements",
                   d: "We learn about your business, target audience, required pages, and features. We provide a transparent written quotation and agreed scope.",
                   tag: "Days 1–2",
-                  items: ["Requirements alignment", "Fixed price quote", "No-obligation discussion"]
+                  items: [
+                    "Requirements alignment",
+                    "Fixed price quote",
+                    "No-obligation discussion",
+                  ],
                 },
                 {
                   n: "02",
                   t: "Visual Design & Prototype",
                   d: "We design a clean, responsive prototype in Figma tailored to your branding, colours, and offerings. 50% project advance is collected.",
                   tag: "Days 3–5",
-                  items: ["Figma visual prototype", "Content & image placement", "Client review & revisions"]
+                  items: [
+                    "Figma visual prototype",
+                    "Content & image placement",
+                    "Client review & revisions",
+                  ],
                 },
                 {
                   n: "03",
                   t: "Development & Integrations",
                   d: "We build your website using modern React 19 + Vite, configure WhatsApp direct buttons, contact forms, and mobile layouts.",
                   tag: "Days 6–10",
-                  items: ["Sub-second mobile speed", "WhatsApp & form setup", "Cross-browser QA testing"]
+                  items: [
+                    "Sub-second mobile speed",
+                    "WhatsApp & form setup",
+                    "Cross-browser QA testing",
+                  ],
                 },
                 {
                   n: "04",
                   t: "Deployment & Complete Handover",
                   d: "We connect your custom domain on Cloudflare Pages, verify SSL, complete the final payment, and hand over all code and credentials.",
                   tag: "Day 12+",
-                  items: ["Live domain launch", "Ownership handover doc", "Optional care plan"]
-                }
+                  items: [
+                    "Live domain launch",
+                    "Ownership handover doc",
+                    "Optional care plan",
+                  ],
+                },
               ].map((step, idx) => {
                 const isActive = activeProcessStep === idx;
                 return (
@@ -1229,7 +1536,9 @@ function App() {
                       {isActive && (
                         <div className="step-inclusions">
                           {step.items.map((it, i) => (
-                            <span key={i} className="step-chip">✓ {it}</span>
+                            <span key={i} className="step-chip">
+                              ✓ {it}
+                            </span>
                           ))}
                         </div>
                       )}
@@ -1250,11 +1559,13 @@ function App() {
             <Sparkles size={22} className="statement-sparkle" />
             <div className="statement-text">
               <p>
-                Building digital experiences that <span>move businesses forward.</span><br />
+                Building digital experiences that{" "}
+                <span>move businesses forward.</span>
+                <br />
                 Direct founder craft. Real outcomes.
               </p>
             </div>
-            
+
             {/* Audio frequency wave animation */}
             <div className="audio-wave" aria-hidden="true">
               <span className="wave-bar bar-1" />
@@ -1278,17 +1589,22 @@ function App() {
                 <span>better website?</span>
               </h2>
               <p>
-                Tell us about your business and goals. We will review your requirements and provide a clear quotation and timeline.
+                Tell us about your business and goals. We will review your
+                requirements and provide a clear quotation and timeline.
               </p>
 
               <div className="contact-direct">
                 <div className="contact-proprietor-card">
-                  <span className="contact-proprietor-label">Legal Ownership &amp; Proprietorship</span>
+                  <span className="contact-proprietor-label">
+                    Legal Ownership &amp; Proprietorship
+                  </span>
                   <div className="contact-proprietor-name">
                     <ShieldCheck size={16} color="#7ad8e8" />
                     <strong>VISHWANATH MANJUNATH MADURI</strong>
                   </div>
-                  <span className="contact-proprietor-desc">Sole Proprietor · VELSPECTRA</span>
+                  <span className="contact-proprietor-desc">
+                    Sole Proprietor · VELSPECTRA
+                  </span>
                 </div>
                 <a
                   href="mailto:vishwanathdvgmm@gmail.com"
@@ -1312,13 +1628,16 @@ function App() {
                   onMouseEnter={() => sound.playHover()}
                   onClick={() => sound.playClick()}
                 >
-                  <MessageSquare size={17} /> Chat on WhatsApp (+91 8310490313) ↗
+                  <MessageSquare size={17} /> Chat on WhatsApp (+91 8310490313)
+                  ↗
                 </a>
                 <span>
-                  <Globe2 size={17} /> Operating from India · Serving local & international clients
+                  <Globe2 size={17} /> Operating from India · Serving local &
+                  international clients
                 </span>
                 <span>
-                  <Activity size={17} /> Currently accepting new website projects
+                  <Activity size={17} /> Currently accepting new website
+                  projects
                 </span>
               </div>
             </div>
@@ -1331,7 +1650,10 @@ function App() {
                   </div>
                   <h3>Enquiry Successfully Dispatched!</h3>
                   <p>
-                    Thank you, <strong>{formName || "there"}</strong>. Your project requirements for <strong>{formCategory}</strong> have been delivered directly to our inbox at <strong>vishwanathdvgmm@gmail.com</strong>.
+                    Thank you, <strong>{formName || "there"}</strong>. Your
+                    project requirements for <strong>{formCategory}</strong>{" "}
+                    have been delivered directly to our inbox at{" "}
+                    <strong>vishwanathdvgmm@gmail.com</strong>.
                   </p>
 
                   <div className="whatsapp-lead-bridge">
@@ -1340,7 +1662,10 @@ function App() {
                     </div>
                     <div className="bridge-text">
                       <strong>Instant WhatsApp Priority Hotline</strong>
-                      <p>Want to discuss your project right away? Forward these details straight to Vishwanath on WhatsApp.</p>
+                      <p>
+                        Want to discuss your project right away? Forward these
+                        details straight to Vishwanath on WhatsApp.
+                      </p>
                     </div>
                     <a
                       href={getWhatsAppEnquiryUrl()}
@@ -1401,18 +1726,73 @@ function App() {
                       />
                     </label>
                     <label>
-                      Selected Package / Service *
+                      Selected Service Package *
                       <span className="select-wrap">
                         <select
                           value={formCategory}
                           onChange={(e) => setFormCategory(e.target.value)}
                         >
-                          <option>Starter Website (₹4,999 – ₹7,999 / $99 – $149)</option>
-                          <option>Business Website (₹9,999 – ₹19,999 / $199 – $399)</option>
-                          <option>Professional Website (₹24,999 – ₹49,999 / $499 – $999)</option>
-                          <option>E-Commerce Website (₹29,999 – ₹79,999+ / $699 – $1,499+)</option>
-                          <option>Website Maintenance Retainer</option>
-                          <option>WhatsApp Automation & Custom Integrations</option>
+                          <option>
+                            Landing Page Development (Starting from ₹2,999 /
+                            $49)
+                          </option>
+                          <option>
+                            Business Website Development (Starting from ₹5,999 /
+                            $99)
+                          </option>
+                          <option>
+                            Portfolio Website Development (Starting from ₹8,999
+                            / $149)
+                          </option>
+                          <option>
+                            Restaurant Website Development (Starting from
+                            ₹11,999 / $199)
+                          </option>
+                          <option>
+                            E-commerce Website Development (Starting from
+                            ₹14,999 / $249)
+                          </option>
+                          <option>
+                            Custom Website Development (Starting from ₹19,999 /
+                            $349)
+                          </option>
+                          <option>Website Maintenance Retainer Only</option>
+                          <option>
+                            WhatsApp Automation & Custom Integrations
+                          </option>
+                        </select>
+                        <ChevronDown size={16} />
+                      </span>
+                    </label>
+                  </div>
+
+                  {/* Care & Maintenance Retainer Add-on */}
+                  <div className="form-row">
+                    <label style={{ gridColumn: "1 / -1" }}>
+                      Website Care &amp; Maintenance Retainer (Optional Add-on)
+                      <span className="select-wrap">
+                        <select
+                          value={formCarePlan}
+                          onChange={(e) => setFormCarePlan(e.target.value)}
+                        >
+                          <option value="None (One-time project delivery)">
+                            None (One-time project delivery)
+                          </option>
+                          <option value="Basic Care Retainer (+₹499/mo / +$10/mo)">
+                            Basic Care Retainer (+
+                            {currency === "INR" ? "₹499/mo" : "$10/mo"} — Speed
+                            &amp; Cloud Backups)
+                          </option>
+                          <option value="Standard Care Retainer (+₹999/mo / +$20/mo)">
+                            Standard Care Retainer (+
+                            {currency === "INR" ? "₹999/mo" : "$20/mo"} —
+                            Content Updates &amp; Security)
+                          </option>
+                          <option value="Premium Care Retainer (+₹1,999/mo / +$40/mo)">
+                            Premium Care Retainer (+
+                            {currency === "INR" ? "₹1,999/mo" : "$40/mo"} —
+                            Priority Founder Support)
+                          </option>
                         </select>
                         <ChevronDown size={16} />
                       </span>
@@ -1420,21 +1800,25 @@ function App() {
                   </div>
 
                   <div className="form-budget-group">
-                    <label className="budget-label">Target Project Budget ({currency})</label>
+                    <label className="budget-label">
+                      Target Project Budget ({currency})
+                    </label>
                     <div className="budget-chips">
-                      {(currency === "INR" ? budgetsINR : budgetsUSD).map((b) => (
-                        <button
-                          type="button"
-                          key={b}
-                          className={`budget-chip ${formBudget === b ? "is-selected" : ""}`}
-                          onClick={() => {
-                            sound.playClick();
-                            setFormBudget(b);
-                          }}
-                        >
-                          {b}
-                        </button>
-                      ))}
+                      {(currency === "INR" ? budgetsINR : budgetsUSD).map(
+                        (b) => (
+                          <button
+                            type="button"
+                            key={b}
+                            className={`budget-chip ${formBudget === b ? "is-selected" : ""}`}
+                            onClick={() => {
+                              sound.playClick();
+                              setFormBudget(b);
+                            }}
+                          >
+                            {b}
+                          </button>
+                        ),
+                      )}
                     </div>
                   </div>
 
@@ -1460,7 +1844,8 @@ function App() {
                       <span>Sending to Inbox...</span>
                     ) : (
                       <>
-                        <span>Send Project Enquiry</span> <ArrowUpRight size={17} />
+                        <span>Send Project Enquiry</span>{" "}
+                        <ArrowUpRight size={17} />
                       </>
                     )}
                   </button>
@@ -1479,34 +1864,70 @@ function App() {
           <div>
             <Logo footer />
             <p>
-              VELSPECTRA is an independent digital solutions agency.<br />
+              VELSPECTRA is an independent digital solutions agency.
+              <br />
               Building digital experiences that move businesses forward.
             </p>
             <p className="footer-subtext">
-              Domain: <strong>velspectra.in</strong> · Sole Proprietorship · Operating from India & serving worldwide.
+              Domain: <strong>velspectra.in</strong> · Sole Proprietorship ·
+              Operating from India & serving worldwide.
             </p>
             <div className="footer-legal-ownership">
               <p className="footer-legal-stmt">
-                VELSPECTRA is a sole proprietorship owned and operated by <strong>VISHWANATH MANJUNATH MADURI</strong>.
+                VELSPECTRA is a sole proprietorship owned and operated by{" "}
+                <strong>VISHWANATH MANJUNATH MADURI</strong>.
               </p>
               <div className="footer-legal-details">
                 <div className="footer-legal-row">
                   <span className="footer-legal-label">Legal Proprietor:</span>
-                  <span className="footer-legal-val">VISHWANATH MANJUNATH MADURI</span>
+                  <span className="footer-legal-val">
+                    VISHWANATH MANJUNATH MADURI
+                  </span>
                 </div>
                 <div className="footer-legal-row">
                   <span className="footer-legal-label">Business Email:</span>
-                  <a href="mailto:vishwanathdvgmm@gmail.com" className="footer-legal-link">vishwanathdvgmm@gmail.com</a>
+                  <a
+                    href="mailto:vishwanathdvgmm@gmail.com"
+                    className="footer-legal-link"
+                  >
+                    vishwanathdvgmm@gmail.com
+                  </a>
                 </div>
                 <div className="footer-legal-row">
                   <span className="footer-legal-label">Contact Number:</span>
-                  <a href="tel:+918310490313" className="footer-legal-link">+91 8310490313</a>
+                  <a href="tel:+918310490313" className="footer-legal-link">
+                    +91 8310490313
+                  </a>
+                </div>
+                <div className="footer-legal-row">
+                  <span className="footer-legal-label">Government Reg:</span>
+                  <span className="footer-legal-val">
+                    Udyam MSME: <strong>UDYAM-KR-12-0080220</strong> · Micro
+                    (Services)
+                  </span>
+                </div>
+                <div className="footer-legal-row" style={{ marginTop: 2 }}>
+                  <span className="footer-legal-label">Certificate:</span>
+                  <a
+                    href="/udyam-registration-certificate.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="footer-legal-link"
+                    style={{ textDecoration: "underline", color: "#7ad8e8" }}
+                  >
+                    View MSME Certificate (PDF) ↗
+                  </a>
                 </div>
               </div>
             </div>
             <div className="footer-trust-badges">
-              <span><ShieldCheck size={13} color="#34d399" /> Direct Verified Banking &amp; UPI</span>
-              <span><Lock size={13} color="#7ad8e8" /> 256-Bit SSL Encrypted</span>
+              <span>
+                <ShieldCheck size={13} color="#34d399" /> Direct Verified
+                Banking &amp; UPI
+              </span>
+              <span>
+                <Lock size={13} color="#7ad8e8" /> 256-Bit SSL Encrypted
+              </span>
             </div>
           </div>
           <div className="footer-links">
@@ -1573,7 +1994,7 @@ function App() {
                   scrollToSection("pricing");
                 }}
               >
-                Starter (₹4,999+)
+                Landing Page (₹2,999+)
               </a>
               <a
                 href="/pricing"
@@ -1583,7 +2004,7 @@ function App() {
                   scrollToSection("pricing");
                 }}
               >
-                Business (₹9,999+)
+                Business (₹5,999+)
               </a>
               <a
                 href="/pricing"
@@ -1593,7 +2014,7 @@ function App() {
                   scrollToSection("pricing");
                 }}
               >
-                Professional (₹24,999+)
+                Portfolio (₹8,999+)
               </a>
               <a
                 href="/pricing"
@@ -1603,7 +2024,7 @@ function App() {
                   scrollToSection("pricing");
                 }}
               >
-                E-Commerce (₹29,999+)
+                Restaurant (₹11,999+)
               </a>
               <a
                 href="/pricing"
@@ -1613,7 +2034,17 @@ function App() {
                   scrollToSection("pricing");
                 }}
               >
-                Monthly Care Plans
+                E-Commerce (₹14,999+)
+              </a>
+              <a
+                href="/pricing"
+                onClick={(e) => {
+                  e.preventDefault();
+                  sound.playClick();
+                  scrollToSection("pricing");
+                }}
+              >
+                Custom Web (₹19,999+)
               </a>
             </div>
             <div>
@@ -1708,9 +2139,19 @@ function App() {
                   window.history.pushState(null, "", "/payment-process");
                 }}
               >
-                <FileText size={13} style={{ display: "inline", verticalAlign: "middle", marginRight: 4 }} /> How Payment Works
+                <FileText
+                  size={13}
+                  style={{
+                    display: "inline",
+                    verticalAlign: "middle",
+                    marginRight: 4,
+                  }}
+                />{" "}
+                How Payment Works
               </button>
-              <a href="mailto:vishwanathdvgmm@gmail.com">vishwanathdvgmm@gmail.com</a>
+              <a href="mailto:vishwanathdvgmm@gmail.com">
+                vishwanathdvgmm@gmail.com
+              </a>
               <a href="tel:+918310490313" className="phone-footer-link">
                 <Phone size={13} /> +91 8310490313
               </a>
@@ -1737,8 +2178,13 @@ function App() {
         </div>
 
         <div className="container footer-bottom">
-          <span>© {new Date().getFullYear()} VELSPECTRA (velspectra.in). ALL RIGHTS RESERVED.</span>
-          <span>SOLE PROPRIETORSHIP · PROPRIETOR: VISHWANATH MANJUNATH MADURI</span>
+          <span>
+            © {new Date().getFullYear()} VELSPECTRA (velspectra.in). ALL RIGHTS
+            RESERVED.
+          </span>
+          <span>
+            SOLE PROPRIETORSHIP · PROPRIETOR: VISHWANATH MANJUNATH MADURI
+          </span>
           <a
             href="/"
             onClick={(e) => {

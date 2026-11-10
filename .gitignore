@@ -5,8 +5,7 @@ node_modules/
 dist/
 
 # Business blueprint / Private docs
-Model.md
-Payment_model.md
+Documents/
 
 # Environment variables & secrets
 .env

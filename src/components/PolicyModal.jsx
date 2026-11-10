@@ -311,48 +311,105 @@ export default function PolicyModal({ policyType, onClose }) {
     },
 
     contact: {
-      title: "Business Contact & Support Information",
-      subtitle: "Operating Identity & Support Channels",
+      title: "Business Identity & Contact Information",
+      subtitle: "Operating Identity, MSME Registration & Support Channels",
       icon: Mail,
       updated: "November 2026",
       content: (
         <>
           <p>
-            <strong>VELSPECTRA</strong> is a sole proprietorship owned and operated by{" "}
-            <strong>VISHWANATH MANJUNATH MADURI</strong>. We operate as an independent digital
-            solutions agency based in India, serving clients across India and internationally.
+            <strong>VELSPECTRA</strong> is an independent digital solutions
+            venture operating as a sole proprietorship owned and operated by{" "}
+            <strong>VISHWANATH MANJUNATH MADURI</strong>. We provide website
+            design, development and software-related services to individuals,
+            startups and businesses in India and internationally.
           </p>
 
           <div className="policy-contact-box">
-            <h4>Trade Name & Operating Entity</h4>
-            <p>
-              <strong>Legal Proprietor:</strong> VISHWANATH MANJUNATH MADURI
-            </p>
+            <h4>1. Business Information</h4>
             <p>
               <strong>Business Name:</strong> VELSPECTRA
             </p>
             <p>
-              <strong>Official Website:</strong> https://velspectra.in
+              <strong>Business Structure:</strong> Sole Proprietorship
+            </p>
+            <p>
+              <strong>Legal Proprietor:</strong> VISHWANATH MANJUNATH MADURI
+            </p>
+            <p>
+              <strong>Business Category:</strong> Digital Solutions &amp;
+              Technology Services
+            </p>
+            <p>
+              <strong>Location:</strong> Davangere, Karnataka, India
+            </p>
+            <p>
+              <strong>Official Website:</strong> https://velspectra.in/
             </p>
             <p>
               <strong>Business Email:</strong> vishwanathdvgmm@gmail.com
             </p>
             <p>
-              <strong>Contact & WhatsApp:</strong> +91 8310490313
+              <strong>Contact Number / WhatsApp:</strong> +91 8310490313
+            </p>
+
+            <h4 style={{ marginTop: "16px" }}>2. Government Registration</h4>
+            <p>
+              <strong>Registration Type:</strong> Udyam (MSME) Registration
             </p>
             <p>
-              <strong>Business Activity:</strong> IT & Website Design,
-              Development & Digital Solutions
+              <strong>Udyam Registration Number:</strong> UDYAM-KR-12-0080220
             </p>
             <p>
-              <strong>Entity Type:</strong> Sole Proprietorship
+              <strong>Enterprise Classification:</strong> Micro Enterprise
             </p>
             <p>
-              <strong>Settlement Jurisdiction:</strong> India
+              <strong>Financial Year:</strong> 2026–27
+            </p>
+            <p>
+              <strong>Major Activity:</strong> Services
+            </p>
+            <p style={{ marginTop: "6px" }}>
+              <a
+                href="/udyam-registration-certificate.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#7ad8e8",
+                  textDecoration: "underline",
+                  fontWeight: 600,
+                }}
+              >
+                📄 View / Download Official Udyam Registration Certificate (PDF)
+                ↗
+              </a>
             </p>
           </div>
 
-          <h4>Customer Support & Inquiries</h4>
+          <h4>3. Services Offered</h4>
+          <ul>
+            <li>Landing Page Development (Starting from ₹2,999)</li>
+            <li>Business Website Development (Starting from ₹5,999)</li>
+            <li>Portfolio Website Development (Starting from ₹8,999)</li>
+            <li>Restaurant Website Development (Starting from ₹11,999)</li>
+            <li>E-commerce Website Development (Starting from ₹14,999)</li>
+            <li>Custom Website Development (Starting from ₹19,999)</li>
+          </ul>
+
+          <h4>4. Registration Disclaimer</h4>
+          <p
+            style={{
+              fontStyle: "italic",
+              color: "var(--text-muted)",
+              fontSize: "0.88rem",
+            }}
+          >
+            VELSPECTRA holds an Udyam MSME registration. This registration
+            establishes its MSME registration status and does not imply
+            government approval or certification of its individual services.
+          </p>
+
+          <h4>5. Customer Support & Inquiries</h4>
           <p>
             For project inquiries, quotations, technical support, or billing
             queries, reach out directly:

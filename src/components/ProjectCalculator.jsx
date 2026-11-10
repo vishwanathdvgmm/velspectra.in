@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Sparkles, Calculator, ArrowRight, Check, MessageSquare } from "lucide-react";
+import {
+  Sparkles,
+  Calculator,
+  ArrowRight,
+  Check,
+  MessageSquare,
+} from "lucide-react";
 import { sound } from "../utils/sound";
 
 export default function ProjectCalculator({ currency = "INR", onSelectScope }) {
@@ -8,49 +14,87 @@ export default function ProjectCalculator({ currency = "INR", onSelectScope }) {
   const [selectedAddons, setSelectedAddons] = useState(["whatsapp", "seo"]);
 
   const packages = {
-    starter: {
-      id: "starter",
-      name: "Starter Website",
-      category: "Entry Level",
-      priceINR: "₹4,999 – ₹7,999",
-      priceUSD: "$99 – $149",
-      timeline: "5 – 7 Days",
-      ideal: "Single page responsive site, menu, or landing page",
+    landing: {
+      id: "landing",
+      name: "Landing Page Development",
+      category: "High-Converting",
+      priceINR: "Starting from ₹2,999",
+      priceUSD: "Starting from $49",
+      timeline: "3 – 5 Days",
+      ideal: "Single high-impact, mobile-first landing page with lead capture",
     },
     business: {
       id: "business",
-      name: "Business Website",
+      name: "Business Website Development",
       category: "Recommended",
-      priceINR: "₹9,999 – ₹19,999",
-      priceUSD: "$199 – $399",
+      priceINR: "Starting from ₹5,999",
+      priceUSD: "Starting from $99",
       timeline: "1 – 2 Weeks",
-      ideal: "Up to 5 pages, custom design, forms & WhatsApp",
+      ideal: "Up to 5 professional custom pages with WhatsApp & SEO",
     },
-    professional: {
-      id: "professional",
-      name: "Professional Website",
-      category: "Advanced",
-      priceINR: "₹24,999 – ₹49,999",
-      priceUSD: "$499 – $999",
-      timeline: "2 – 3 Weeks",
-      ideal: "Multi-page dynamic web app, custom animations & analytics",
+    portfolio: {
+      id: "portfolio",
+      name: "Portfolio Website Development",
+      category: "Showcase",
+      priceINR: "Starting from ₹8,999",
+      priceUSD: "Starting from $149",
+      timeline: "1 – 2 Weeks",
+      ideal: "Interactive work showcase gallery, case studies & testimonials",
+    },
+    restaurant: {
+      id: "restaurant",
+      name: "Restaurant Website Development",
+      category: "Hospitality",
+      priceINR: "Starting from ₹11,999",
+      priceUSD: "Starting from $199",
+      timeline: "1 – 2 Weeks",
+      ideal: "Digital menu, WhatsApp reservation booking & location maps",
     },
     ecommerce: {
       id: "ecommerce",
-      name: "E-Commerce Storefront",
-      category: "Specialized",
-      priceINR: "₹29,999 – ₹79,999+",
-      priceUSD: "$699 – $1,499+",
-      timeline: "3 – 5 Weeks",
-      ideal: "Catalog, cart, Razorpay / Stripe gateway & order flows",
+      name: "E-commerce Website Development",
+      category: "Storefront",
+      priceINR: "Starting from ₹14,999",
+      priceUSD: "Starting from $249",
+      timeline: "2 – 3 Weeks",
+      ideal: "Product catalog, shopping cart, UPI/card payment checkout",
+    },
+    custom: {
+      id: "custom",
+      name: "Custom Website Development",
+      category: "Enterprise",
+      priceINR: "Starting from ₹19,999",
+      priceUSD: "Starting from $349",
+      timeline: "2 – 4 Weeks",
+      ideal: "Bespoke web applications, custom portals & API integrations",
     },
   };
 
   const addonsList = [
-    { id: "whatsapp", label: "WhatsApp One-Click Booking / Enquiry", inr: "Included in Business+", usd: "Included" },
-    { id: "seo", label: "Core Web Vitals & On-Page SEO Foundations", inr: "+ ₹2,499", usd: "+ $49" },
-    { id: "payment", label: "Payment Gateway Integration (Razorpay/Stripe)", inr: "+ ₹4,999", usd: "+ $99" },
-    { id: "maintenance", label: "Monthly Standard Care Retainer", inr: "₹999 / mo", usd: "$19 / mo" },
+    {
+      id: "whatsapp",
+      label: "WhatsApp One-Click Booking / Enquiry",
+      inr: "Included in Business+",
+      usd: "Included",
+    },
+    {
+      id: "seo",
+      label: "Core Web Vitals & On-Page SEO Foundations",
+      inr: "+ ₹2,499",
+      usd: "+ $49",
+    },
+    {
+      id: "payment",
+      label: "Payment Gateway Integration (Razorpay/Stripe)",
+      inr: "+ ₹4,999",
+      usd: "+ $99",
+    },
+    {
+      id: "maintenance",
+      label: "Monthly Standard Care Retainer",
+      inr: "₹999 / mo",
+      usd: "$19 / mo",
+    },
   ];
 
   const toggleAddon = (id) => {
@@ -71,7 +115,7 @@ export default function ProjectCalculator({ currency = "INR", onSelectScope }) {
       .join(", ");
     const summary = `${pkg.name} (${isINR ? pkg.priceINR : pkg.priceUSD}) with [${addonNames}]`;
     if (onSelectScope) {
-      onSelectScope(pkg.name, summary);
+      onSelectScope(pkg.name, summary, pkg.id);
     }
     const contactSection = document.getElementById("contact");
     if (contactSection) {
@@ -91,7 +135,8 @@ export default function ProjectCalculator({ currency = "INR", onSelectScope }) {
           </span>
           <h3>Interactive Scope & Quotation Planner</h3>
           <p className="calc-subtitle">
-            Select your package and desired capabilities to view estimated project scope and timelines.
+            Select your package and desired capabilities to view estimated
+            project scope and timelines.
           </p>
         </div>
         <span className="calc-badge">
@@ -133,7 +178,9 @@ export default function ProjectCalculator({ currency = "INR", onSelectScope }) {
         </div>
 
         <div className="calc-group">
-          <label className="calc-label">2. Specialized Integrations & Care</label>
+          <label className="calc-label">
+            2. Specialized Integrations & Care
+          </label>
           <div className="calc-addons">
             {addonsList.map((addon) => {
               const active = selectedAddons.includes(addon.id);
