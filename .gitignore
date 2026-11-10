@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Production build
+dist/
+
+# Business blueprint / Private docs
+Model.md
+Payment_model.md
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# OS generated files
+.DS_Store
+Thumbs.db
