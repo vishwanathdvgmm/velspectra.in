@@ -40,15 +40,36 @@ npm run preview
 ## Structure
 
 ```text
+├── 📁 functions
+│   └── 📁 api
+│       ├── 📄 cashfree-webhook.js
+│       ├── 📄 create-payment.js
+│       └── 📄 payment-status.js
 ├── 📁 public
+│   ├── 📄 _redirects
 │   ├── 🖼️ velspectra-logo.png
 │   └── 🖼️ velspectra-v-icon.png
 ├── 📁 src
+│   ├── 📁 components
+│   │   ├── 📄 Confetti.jsx
+│   │   ├── 📄 CustomCursor.jsx
+│   │   ├── 📄 HeroVisual.jsx
+│   │   ├── 📄 Marquee.jsx
+│   │   ├── 📄 ParticleCanvas.jsx
+│   │   ├── 📄 PaymentModal.jsx
+│   │   ├── 📄 PolicyModal.jsx
+│   │   ├── 📄 ProjectCalculator.jsx
+│   │   ├── 📄 ProjectModal.jsx
+│   │   └── 📄 SoundToggle.jsx
+│   ├── 📁 utils
+│   │   └── 📄 sound.js
 │   ├── 📄 App.jsx
 │   ├── 📄 main.jsx
 │   └── 🎨 styles.css
+├── ⚙️ .gitignore
 ├── 📝 README.md
 ├── 🌐 index.html
+├── ⚙️ package-lock.json
 └── ⚙️ package.json
 ```
 

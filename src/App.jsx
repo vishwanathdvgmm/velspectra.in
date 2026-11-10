@@ -15,7 +15,6 @@ import FloatingControls from "./components/SoundToggle";
 import ProjectModal from "./components/ProjectModal";
 import ProjectCalculator from "./components/ProjectCalculator";
 import PolicyModal from "./components/PolicyModal";
-import PaymentModal from "./components/PaymentModal";
 import Confetti from "./components/Confetti";
 import { sound } from "./utils/sound";
 
@@ -271,7 +270,7 @@ function Logo({ footer = false, onNavigate }) {
   );
 }
 
-function Header({ currency, setCurrency, onOpenPay, onNavigate }) {
+function Header({ currency, setCurrency, onNavigate }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const links = [
@@ -335,21 +334,6 @@ function Header({ currency, setCurrency, onOpenPay, onNavigate }) {
               $ USD
             </button>
           </div>
-
-          {/* Pay Invoice Quick Access */}
-          <button
-            type="button"
-            className="nav-pay-btn"
-            onClick={() => {
-              sound.playClick();
-              setOpen(false);
-              onOpenPay();
-            }}
-            title="Client Payment & Invoice Portal"
-          >
-            <CreditCard size={13} />
-            <span>Pay Invoice</span>
-          </button>
 
           <a
             className="nav-cta"
@@ -483,9 +467,8 @@ function App() {
   const [expandedService, setExpandedService] = useState(null);
   const [activeProcessStep, setActiveProcessStep] = useState(0);
 
-  // Compliance & Payment modal states
+  // Compliance modal state
   const [activePolicy, setActivePolicy] = useState(null);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   // Clean URL Path routing & complete removal of '#' hashes
   useEffect(() => {
@@ -510,8 +493,8 @@ function App() {
         setActivePolicy("delivery");
       } else if (path === "contact-info" || path === "business-info") {
         setActivePolicy("contact");
-      } else if (path === "pay" || path === "payment" || path === "checkout") {
-        setShowPaymentModal(true);
+      } else if (path === "payment-process" || path === "how-to-pay") {
+        setActivePolicy("payment");
       } else if (path) {
         // Section smooth scroll (/services, /pricing, /work, /process, /about, /contact)
         const targetElement = document.getElementById(path);
@@ -631,23 +614,9 @@ function App() {
         />
       )}
 
-      {/* Cashfree PG Client Payment & Invoice Portal */}
-      {showPaymentModal && (
-        <PaymentModal
-          onClose={() => {
-            setShowPaymentModal(false);
-            window.history.replaceState(null, "", "/");
-          }}
-        />
-      )}
-
       <Header
         currency={currency}
         setCurrency={setCurrency}
-        onOpenPay={() => {
-          setShowPaymentModal(true);
-          window.history.pushState(null, "", "/pay");
-        }}
         onNavigate={scrollToSection}
       />
 
@@ -702,19 +671,6 @@ function App() {
                 >
                   Explore Industry Demos <ArrowRight size={16} />
                 </a>
-                <button
-                  type="button"
-                  className="hero-pay-link"
-                  onClick={() => {
-                    sound.playClick();
-                    setShowPaymentModal(true);
-                    window.history.pushState(null, "", "/pay");
-                  }}
-                  title="Client Invoice Payment Portal"
-                >
-                  <Lock size={13} />
-                  <span>Pay Invoice</span>
-                </button>
               </div>
 
               {/* Direct Value Badges from Model.md */}
@@ -980,6 +936,35 @@ function App() {
               currency={currency}
               onSelectScope={handleScopeSelect}
             />
+
+            {/* Payment Process Notice from Payment_Model.md §6 */}
+            <div className="payment-notice-card">
+              <div className="payment-notice-icon">
+                <ShieldCheck size={26} color="#7ad8e8" />
+              </div>
+              <div className="payment-notice-content">
+                <h4>Structured, Transparent Payment Process</h4>
+                <p>
+                  VELSPECTRA accepts payments via agreed manual methods (UPI &amp; domestic bank transfers for India; supported international bank wires for overseas clients). Payment details are issued on an official project invoice only after your scope and quotation are approved. Work commences once the agreed 50% advance has been independently verified.
+                </p>
+                <div className="payment-notice-milestones">
+                  <span><strong>50%</strong> Project Advance</span>
+                  <span><strong>30%</strong> Development Milestone</span>
+                  <span><strong>20%</strong> Final Handover</span>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="payment-notice-btn"
+                onClick={() => {
+                  sound.playClick();
+                  setActivePolicy("payment");
+                  window.history.pushState(null, "", "/payment-process");
+                }}
+              >
+                Payment Workflow &rarr;
+              </button>
+            </div>
           </div>
         </section>
 
@@ -1340,7 +1325,7 @@ function App() {
               Domain: <strong>velspectra.in</strong> · Sole Proprietorship · Operating from India & serving worldwide.
             </p>
             <div className="footer-trust-badges">
-              <span><ShieldCheck size={13} color="#34d399" /> Cashfree Verified Merchant</span>
+              <span><ShieldCheck size={13} color="#34d399" /> Direct Verified Banking &amp; UPI</span>
               <span><Lock size={13} color="#7ad8e8" /> 256-Bit SSL Encrypted</span>
             </div>
           </div>
@@ -1508,6 +1493,17 @@ function App() {
               >
                 Business Information
               </button>
+              <button
+                type="button"
+                className="footer-policy-link"
+                onClick={() => {
+                  sound.playClick();
+                  setActivePolicy("payment");
+                  window.history.pushState(null, "", "/payment-process");
+                }}
+              >
+                Payment Workflow
+              </button>
             </div>
             <div>
               <span className="eyebrow">CLIENT & PAYMENTS</span>
@@ -1516,11 +1512,11 @@ function App() {
                 className="footer-pay-btn"
                 onClick={() => {
                   sound.playClick();
-                  setShowPaymentModal(true);
-                  window.history.pushState(null, "", "/pay");
+                  setActivePolicy("payment");
+                  window.history.pushState(null, "", "/payment-process");
                 }}
               >
-                <CreditCard size={14} /> Pay Invoice / Advance
+                <FileText size={14} /> How Payment Works
               </button>
               <a href="mailto:vishwanathdvgmm@gmail.com">vishwanathdvgmm@gmail.com</a>
               <a href="tel:+918310490313" className="phone-footer-link">
@@ -1550,7 +1546,7 @@ function App() {
 
         <div className="container footer-bottom">
           <span>© {new Date().getFullYear()} VELSPECTRA (velspectra.in). ALL RIGHTS RESERVED.</span>
-          <span>SOLE PROPRIETORSHIP · POWERED BY CASHFREE PAYMENTS</span>
+          <span>SOLE PROPRIETORSHIP · INDEPENDENT DIGITAL STUDIO</span>
           <a
             href="/"
             onClick={(e) => {

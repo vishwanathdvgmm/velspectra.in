@@ -38,7 +38,7 @@ export default function PolicyModal({ policyType, onClose }) {
           <ul>
             <li><strong>Standard Payment Structure:</strong> All projects require a 50% advance payment before design and development commence. The remaining 50% is due upon final review and milestone approval prior to domain connection and source code deployment.</li>
             <li><strong>Milestone Payments for Large Projects:</strong> For custom enterprise projects, billing may follow a 50% advance, 30% development milestone, and 20% final deployment structure.</li>
-            <li><strong>Payment Gateways:</strong> Payments are processed securely via Cashfree Payments, supporting UPI, Debit/Credit Cards, Net Banking, International Cards, and PayPal where enabled.</li>
+            <li><strong>Payment Collection:</strong> Payments are processed via approved direct methods (UPI and domestic bank transfer for Indian clients; supported international inward bank transfers for overseas clients) against an official project invoice. No sensitive card credentials are collected or handled on our website.</li>
           </ul>
 
           <h4>3. Client Obligations & Content Delivery</h4>
@@ -94,7 +94,7 @@ export default function PolicyModal({ policyType, onClose }) {
 
           <h4>4. Payment Information Security</h4>
           <p>
-            VELSPECTRA does not store, process, or view client credit card numbers, UPI PINs, or banking credentials on our servers. All financial transactions are securely handled through Cashfree Payments under PCI-DSS Level 1 compliant encryption.
+            VELSPECTRA does not collect, store, or process client credit card numbers, UPI PINs, or banking passwords on our servers. All payments are executed directly by the client through their own bank or trusted UPI application against an official invoice.
           </p>
 
           <h4>5. Data Retention & Access</h4>
@@ -123,7 +123,7 @@ export default function PolicyModal({ policyType, onClose }) {
 
           <h4>2. Cancellation Before Work Begins</h4>
           <p>
-            If a client requests cancellation within 24 hours of invoice payment and before discovery research or wireframing has begun, a full refund will be processed minus any non-refundable payment gateway processing charges (typically 2% + GST).
+            If a client requests cancellation within 24 hours of invoice payment and before discovery research or wireframing has begun, a full refund will be processed minus any non-refundable bank transfer or outward remittance fees incurred.
           </p>
 
           <h4>3. Revisions & Satisfaction Guarantee</h4>
@@ -217,6 +217,50 @@ export default function PolicyModal({ policyType, onClose }) {
         </>
       ),
     },
+
+    payment: {
+      title: "Payment Process & Workflow",
+      subtitle: "Official Manual Collection & Verification Model (v1.0)",
+      icon: CheckCircle2,
+      updated: "November 2026",
+      content: (
+        <>
+          <p>
+            VELSPECTRA follows a structured, quotation-and-invoice-driven payment model. We do not require clients to enter sensitive payment details on our website; all transactions are executed directly through your own bank or UPI application against an official invoice.
+          </p>
+
+          <h4>1. Customer Payment Workflow</h4>
+          <ol>
+            <li><strong>Enquiry &amp; Discovery:</strong> You share your business goals, required pages, and specifications.</li>
+            <li><strong>Written Scope &amp; Quotation:</strong> We provide a formal written quotation with complete deliverables, inclusions, exclusions, and timeline.</li>
+            <li><strong>Client Approval:</strong> You approve the scope and pricing in writing.</li>
+            <li><strong>Invoice Issuance:</strong> We issue a project invoice with a unique invoice ID (e.g. <code>VEL-2026-001</code>) and payment instructions.</li>
+            <li><strong>Payment Transfer:</strong> You pay using the agreed method (UPI or domestic bank transfer for India; international bank wire for overseas).</li>
+            <li><strong>Independent Verification:</strong> We verify the actual credit in our receiving account before commencing work.</li>
+            <li><strong>Commencement &amp; Receipts:</strong> We issue an official receipt and begin work on your project.</li>
+            <li><strong>Milestone Handover:</strong> Subsequent milestone payments are invoiced and verified at agreed development stages.</li>
+          </ol>
+
+          <h4>2. Standard Milestone Schedule</h4>
+          <ul>
+            <li><strong>50% Project Advance:</strong> Due upon quotation approval before design or code begins.</li>
+            <li><strong>30% Development Milestone:</strong> Due upon staging site review and core page completion.</li>
+            <li><strong>20% Final Handover:</strong> Due before final custom domain connection and production repository handover.</li>
+          </ul>
+
+          <h4>3. Accepted Payment Routes</h4>
+          <ul>
+            <li><strong>Indian Clients:</strong> Direct UPI (GPay, PhonePe, Paytm, BHIM) and domestic bank transfers (NEFT, IMPS). Official payment UPI ID and banking details are shared exclusively on valid invoices.</li>
+            <li><strong>International Clients:</strong> Direct international inward bank transfer (SWIFT wire) to our Indian bank account with required service-export purpose codes and documentation.</li>
+          </ul>
+
+          <h4>4. Verification &amp; Security Controls</h4>
+          <p>
+            <strong>Operating rule:</strong> No project is marked paid and no payment-dependent work begins until funds have been independently verified as credited in the receiving account. A payment screenshot or transaction ID alone does not constitute verified settlement.
+          </p>
+        </>
+      ),
+    },
   };
 
   const active = policies[policyType] || policies.terms;
@@ -259,7 +303,7 @@ export default function PolicyModal({ policyType, onClose }) {
         <div className="policy-modal-footer">
           <div className="compliance-tag">
             <CheckCircle2 size={15} color="#34d399" />
-            <span>Cashfree, RBI & International Compliance Standard</span>
+            <span>RBI, Banking & International Commercial Standard</span>
           </div>
           <button
             type="button"
